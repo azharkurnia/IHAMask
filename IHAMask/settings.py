@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'IHAM_app'
+    'IHAM_app',
+    'IHAM_loginAdmin'
 ]
 
 MIDDLEWARE = [
