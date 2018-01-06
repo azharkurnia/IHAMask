@@ -1,0 +1,8 @@
+ 
+  <title>Login Admin</title>
+  <h2>Login Admin</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>

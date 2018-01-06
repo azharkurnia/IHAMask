@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic.base import RedirectView
 import IHAM_app.urls as IHAM_app
+import IHAM_loginAdmin.urls as IHAM_loginAdmin
+
 from django.views.generic import RedirectView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^forum/', include(IHAM_app, namespace='IHAM_app')),
     url(r'^$', RedirectView.as_view(url='forum/', permanent = True), name = '$'),
+    url(r'^login/', include(IHAM_loginAdmin, namespace='IHAM_loginAdmin')),
 ]
