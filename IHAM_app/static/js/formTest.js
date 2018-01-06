@@ -6,6 +6,7 @@ $(document).ready(function(){
       $("#quantity-productA").val("");
     }
     $("#harga-barang").text(getHargaBarang());
+    $("#total-harga").text(getHargaBarang());
   });
 
   $("#checkboxB").change(function(){
@@ -15,14 +16,17 @@ $(document).ready(function(){
       $("#quantity-productB").val("");
     }
     $("#harga-barang").text(getHargaBarang());
+    $("#total-harga").text(getHargaBarang());
   });
 
   $("#quantity-productA").keyup(function(){
     $("#harga-barang").text(getHargaBarang());
+    $("#total-harga").text(getHargaBarang());
   });
 
   $("#quantity-productB").keyup(function(){
     $("#harga-barang").text(getHargaBarang());
+    $("#total-harga").text(getHargaBarang());
   });
 });
 
