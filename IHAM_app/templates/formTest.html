@@ -8,6 +8,8 @@
     <title>Form Faisal</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/formTest.css' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
@@ -20,29 +22,92 @@
             <h1>Order</h1>
             <p>Text apa kek co</p>
             <form method="POST" >
-              <div class="form-group"> <label for="InputName">Your name</label>
-                <input type="text" class="form-control w-50" id="InputName" placeholder="Your name"> </div>
-              <div class="form-group"> <label for="InputEmail1">Email address</label>
-                <input type="email" class="form-control w-50" id="InputEmail" placeholder="Enter email"> </div>
-              <div class="form-group"><label class="form-control-label">Phone Number</label>
-                <input type="text" class="form-control w-50" placeholder="Enter phone number">
+              {% csrf_token %}
+              <div class="col-md-6" style="padding-left: 0;">
+                <div class="form-group">
+                  <label for="InputName">Your name</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-address-card-o"></i>
+                    </div>
+                    <input type="text" class="form-control" id="InputName" placeholder="Your name" required pattern="[A-Za-z]+" title="Name must be alphabet">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="InputEmail">Email address</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-at"></i>
+                    </div>
+                    <input type="email" class="form-control" id="InputEmail" placeholder="Enter email" required="required">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label">Phone Number</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-mobile-phone"></i>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter phone number" required pattern="[0-9]{10,12}" id="phone-number" title="Input must be 10-12 'number'">
+                  </div>
+                </div>
               </div>
-              <div class="form-check"> <label class="form-check-label"> <input class="form-check-input" type="checkbox" value=""> Product A</label> </div>
-              <div class="form-check"> <label class="form-check-label"> <input class="form-check-input" type="checkbox" value="">Product B&nbsp;</label> </div>
-              <div class="form-group"><label class="form-control-label">Order Address:</label></div>
-              <div class="form-group w-50"><label class="form-control-label">Street</label>
-                <input type="text" class="form-control w-100">
+              <br>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" id="checkboxA" value="True"> Product A (Rp 5000)
+                    </label>
+                    <input type="text" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productA" style="display: none" pattern="[0-9]+">
+                  </div>
+                </div>
+                <div class="col-md-3" style="padding-right: 0;">
+                  <div class="form-check">
+                     <label class="form-check-label">
+                       <input class="form-check-input" type="checkbox" id="checkboxB">Product B (Rp 7000)&nbsp;
+                     </label>
+                     <input type="text" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productB" style="display: none" pattern="[0-9]+">
+                   </div>
+                </div>
               </div>
-              <div class="form-group w-50"><label class="form-control-label">State/Province&nbsp;</label>
-                <input type="text" class="form-control">
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Total Product Price: Rp <span id="harga-barang">0</span></p>
+                </div>
               </div>
-              <div class="form-group w-50"><label class="form-control-label">City</label>
-                <input type="text" class="form-control w-100">
+              <br>
+              <label class="form-control-label">Order Address:</label>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label">Street</label>
+                    <input type="text" class="form-control w-100" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label">State/Province&nbsp;</label>
+                    <input type="text" class="form-control" required="required">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label">City</label>
+                    <input type="text" class="form-control w-100" required="required">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label">Postal Code</label>
+                    <input type="text" class="form-control w-100" required="required">
+                  </div>
+                </div>
               </div>
-              <div class="form-group w-50"><label class="form-control-label">Postal Code</label>
-                <input type="text" class="form-control w-100">
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Shipping Price: Rp <span id="harga-barang">0</span></p>
+                  <h2>Total Price: Rp <span id="total-harga">0</span></h2>
+                </div>
               </div>
-              <button type="submit" class="btn btn-secondary d-flex">Submit</button>
+              <br>
+              <button type="submit" class="btn d-flex" id='submit-button'>Submit</button>
             </form>
           </div>
         </div>
@@ -55,9 +120,6 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<!-- Raja Ongkir Script -->
-<!-- <script type="text/javascript" src="//rajaongkir.com/script/widget.js"></script> -->
-{% block javascript %}
-
-{% endblock %}
+<!-- JS -->
+<script src="{% static 'js/formTest.js' %}"></script>
 </html>
