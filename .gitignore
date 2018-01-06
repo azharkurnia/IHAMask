@@ -157,3 +157,5 @@ chromedriver
 chromedriver.exe
 /pratikum/static/*
 
+db.sqlite3
+
