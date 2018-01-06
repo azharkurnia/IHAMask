@@ -1,0 +1,21 @@
+#submit-button {
+	background-color:#44c767;
+	-moz-border-radius:18px;
+	-webkit-border-radius:18px;
+	border-radius:18px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:10px 30px;
+	text-decoration:none;
+}
+#submit-button:hover {
+	background-color:#5cbf2a;
+}
+#submit-button:active {
+	position:relative;
+	top:1px;
+}
