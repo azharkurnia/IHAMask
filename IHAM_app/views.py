@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import http.client
+import json
 
 # Create your views here.
 response = {}
@@ -23,5 +24,9 @@ def get_province(request):
 
     res = conn.getresponse()
     data = res.read()
-
-    print(data.decode("utf-8"))
+    data = data.decode("utf-8")
+    data = json.loads(data)
+    # print(data.decode("utf-8"))
+    # print(type(data))
+    print(data['rajaongkir']['status']['description'])
+    print(data['rajaongkir']['results'][0])
