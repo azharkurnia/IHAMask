@@ -7,7 +7,6 @@ from django.http import HttpResponse, JsonResponse
 response = {}
 
 def form_test(request):
-    response["provinces"] = get_province(request)['rajaongkir']['results']
     return render(request, 'formTest.html', response)
 
 def add_data(request):
