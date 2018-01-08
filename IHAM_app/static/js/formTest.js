@@ -1,4 +1,7 @@
+
 $(document).ready(function(){
+
+
   $("#checkboxA").change(function(){
     $("#quantity-productA").toggle();
     var display = $("#quantity-productA").attr("style");
@@ -28,6 +31,8 @@ $(document).ready(function(){
     $("#harga-barang").text(getHargaBarang());
     $("#total-harga").text(getHargaBarang());
   });
+
+
 });
 
 function getValueA(){

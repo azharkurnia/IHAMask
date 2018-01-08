@@ -7,6 +7,7 @@ from django.http import HttpResponse, JsonResponse
 response = {}
 
 def form_test(request):
+    response["provinces"] = get_province(request)['rajaongkir']['results']
     return render(request, 'formTest.html', response)
 
 def add_data(request):
@@ -27,6 +28,14 @@ def get_province(request):
     data = res.read()
     data = data.decode("utf-8")
     data = json.loads(data)
+<<<<<<< HEAD
     print(data['rajaongkir']['status']['description'])
     print(data['rajaongkir']['results'][0])
     return JsonResponse(data)
+=======
+    return data
+    # print(data.decode("utf-8"))
+    # print(type(data))
+    print(data['rajaongkir']['status']['description'])
+    
+>>>>>>> 3687f437efe4293e9057331490c8664601990772
