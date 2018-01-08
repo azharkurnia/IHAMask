@@ -53,3 +53,9 @@ function getHargaBarang(){
   var hargaProductB = 7000;
   return ((getValueA() * hargaProductA) + (getValueB() * hargaProductB));
 }
+
+function hi(province){
+  $(".my-select-province").select2({
+    "data" : province
+  });
+}

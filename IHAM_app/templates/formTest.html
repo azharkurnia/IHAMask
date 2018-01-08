@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/formTest.css' %}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Select2 Script -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
@@ -86,7 +88,7 @@
                   </div>
                   <div class="form-group">
                     <label class="form-control-label">State/Province&nbsp;</label>
-                    <select class="form-control">
+                    <select class="form-control my-select-province">
                     </select>
                   </div>
                 </div>
@@ -95,10 +97,6 @@
                     <label class="form-control-label">City</label>
                     <select class="form-control">
                     </select>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-control-label">Postal Code</label>
-                    <input type="text" class="form-control w-100" required="required">
                   </div>
                 </div>
               </div>
@@ -122,6 +120,27 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<!-- Select2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
 <!-- JS -->
 <script src="{% static 'js/formTest.js' %}"></script>
+<script>
+  $(document).ready(function(){
+    $.ajax({
+        method: "GET",
+        url: "{% url "IHAM_app:get_province" %}",
+        success : function (data) {
+            var listProvince = data['rajaongkir']['results'];
+            for (var i = 0; i < listProvince.length; i++) {
+              listProvince[i]['id'] = listProvince[i]['province_id'];
+              listProvince[i]['text'] = listProvince[i]['province'];
+              delete listProvince[i]['province_id'];
+              delete listProvince[i]['province'];
+            }
+            console.log(listProvince);
+            hi(listProvince);
+        },
+    });
+  });
+</script>
 </html>
