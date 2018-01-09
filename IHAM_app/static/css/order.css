@@ -1,5 +1,5 @@
 .section-background{
-	background: url('../images/contact.png');
+	background: url("{% static 'images/contact.png' %}");
 }
 .contact{
     text-align: left;

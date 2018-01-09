@@ -1,5 +1,5 @@
 .section-background{
-	background: url('../images/about.png');
+	background: url("{% static 'images/about.png' %}");
 }
 .about{
 	background: #f3f3f3;

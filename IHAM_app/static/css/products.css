@@ -1,5 +1,5 @@
 .section-background{
-	background: url('../images/services.png');
+	background: url("{% static 'images/services.png' %}");
 }
 
 .price-table{
