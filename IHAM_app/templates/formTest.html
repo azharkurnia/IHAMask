@@ -87,22 +87,16 @@
                     <input type="text" class="form-control w-100" required="required" name="street">
                   </div>
                   <div class="form-group">
-                    <label class="form-control-label">State/Province&nbsp;</label>
-                    <select class="form-control my-select-province" name="province">
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label">City</label>
-                    <select class="form-control">
-                    </select>
+                    <label class="form-control-label">District/City</label>
+                      <select class="form-control my-select-city" name="city">
+                        <option value=""></option>
+                      </select>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <p>Shipping Price: Rp <span id="harga-barang">0</span></p>
+                  <p>Shipping Price: Rp <span id="ongkos-kirim">0</span></p>
                   <h2>Total Price: Rp <span id="total-harga">0</span></h2>
                 </div>
               </div>
@@ -125,22 +119,52 @@
 <!-- JS -->
 <script src="{% static 'js/formTest.js' %}"></script>
 <script>
+
   $(document).ready(function(){
+    var listCity;
+    var i = 1;
     $.ajax({
         method: "GET",
-        url: "{% url "IHAM_app:get_province" %}",
+        url: "{% url "IHAM_app:get_city" %}",
+        async: false,
         success : function (data) {
-            var listProvince = data['rajaongkir']['results'];
-            for (var i = 0; i < listProvince.length; i++) {
-              listProvince[i]['id'] = listProvince[i]['province_id'];
-              listProvince[i]['text'] = listProvince[i]['province'];
-              delete listProvince[i]['province_id'];
-              delete listProvince[i]['province'];
+            listCity = data['rajaongkir']['results'];
+            for (var i = 0; i < listCity.length; i++) {
+              listCity[i]['id'] = listCity[i]['city_id'];
+              listCity[i]['text'] = listCity[i]['type'] + " " + listCity[i]['city_name'];
             }
-            console.log(listProvince);
-            hi(listProvince);
+            console.log(listCity);
+            $(".my-select-city").select2({
+              "data" : listCity
+             });
+
+            return listCity;
+
+        
+    }});
+
+    $(".my-select-city").on('change', function (e){
+      var index;
+      var id_kota = $(".my-select-city").val();
+      for (var i = 0; i < listCity.length; i++){
+        if (listCity[i]['id'] == id_kota){
+          index = i;
+          break;
+        }
+      }
+      $.ajax({
+        method: "GET",
+        url: "{%url "IHAM_app:get_price" %}",
+        data:{
+          destination: listCity[index]['id']
+
         },
+        success : function(data) {
+          $("#ongkos-kirim").text(data['rajaongkir']['results'][0]['costs'][1]['cost'][0]['value']);
+        }
+      })
     });
+    
   });
 </script>
 </html>

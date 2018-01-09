@@ -62,5 +62,9 @@ function getHargaBarang(){
 function hi(province){
   $(".my-select-province").select2({
     "data" : province
+
   });
+
+
+
 }
