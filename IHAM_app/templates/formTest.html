@@ -23,7 +23,7 @@
           <div class="col-md-12">
             <h1>Order</h1>
             <p>Text apa kek co</p>
-            <form method="POST" >
+            <form method="POST" action="{% url 'IHAM_app:add_data' %}">
               {% csrf_token %}
               <div class="col-md-6" style="padding-left: 0;">
                 <div class="form-group">
@@ -32,7 +32,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-address-card-o"></i>
                     </div>
-                    <input type="text" class="form-control" id="InputName" placeholder="Your name" required pattern="[A-Za-z]+" title="Name must be alphabet">
+                    <input type="text" class="form-control" id="InputName" placeholder="Your name" required pattern="[A-Za-z]+" title="Name must be alphabet" name="name">
                   </div>
                 </div>
                 <div class="form-group">
@@ -41,7 +41,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-at"></i>
                     </div>
-                    <input type="email" class="form-control" id="InputEmail" placeholder="Enter email" required="required">
+                    <input type="email" class="form-control" id="InputEmail" placeholder="Enter email" required="required" name="email">
                   </div>
                 </div>
                 <div class="form-group">
@@ -50,7 +50,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-mobile-phone"></i>
                     </div>
-                    <input type="text" class="form-control" placeholder="Enter phone number" required pattern="[0-9]{10,12}" id="phone-number" title="Input must be 10-12 'number'">
+                    <input type="text" class="form-control" placeholder="Enter phone number" required pattern="[0-9]{10,12}" id="phone-number" title="Input must be 10-12 'number'" name="phone">
                   </div>
                 </div>
               </div>
@@ -61,7 +61,7 @@
                     <label class="form-check-label">
                       <input class="form-check-input" type="checkbox" id="checkboxA" value="True"> Product A (Rp 5000)
                     </label>
-                    <input type="text" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productA" style="display: none" pattern="[0-9]+">
+                    <input type="text" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productA" style="display: none" pattern="[0-9]+" name="productQuantityA">
                   </div>
                 </div>
                 <div class="col-md-3" style="padding-right: 0;">
@@ -69,7 +69,7 @@
                      <label class="form-check-label">
                        <input class="form-check-input" type="checkbox" id="checkboxB">Product B (Rp 7000)&nbsp;
                      </label>
-                     <input type="text" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productB" style="display: none" pattern="[0-9]+">
+                     <input type="text" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productB" style="display: none" pattern="[0-9]+" name="productQuantityB">
                    </div>
                 </div>
               </div>
@@ -84,11 +84,11 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="form-control-label">Street</label>
-                    <input type="text" class="form-control w-100" required="required">
+                    <input type="text" class="form-control w-100" required="required" name="street">
                   </div>
                   <div class="form-group">
                     <label class="form-control-label">State/Province&nbsp;</label>
-                    <select class="form-control my-select-province">
+                    <select class="form-control my-select-province" name="province">
                     </select>
                   </div>
                 </div>
@@ -96,7 +96,6 @@
                   <div class="form-group">
                     <label class="form-control-label">City</label>
                     <select class="form-control">
-
                     </select>
                   </div>
                 </div>

@@ -9,12 +9,31 @@ response = {}
 def form_test(request):
     return render(request, 'formTest.html', response)
 
-def add_data(request):
-    form = Message_Form(request.POST or None)
+def add_order_data_to_models(request):
     if(request.method == 'POST'):
-        response['name'] = request.POST['name'] if request.POST['name'] != "" else "Anonymous"
-        response['email'] = request.POST['email'] if request.POST['email'] != "" else "Anonymous"
-        print(response['name'])
+        customerName = request.POST['name'] if request.POST['name'] != "" else "Anonymous"
+        customerEmail = request.POST['email'] if request.POST['email'] != "" else "Anonymous"
+        customerPhone = request.POST['phone'] if request.POST['phone'] != "" else "Anonymous"
+        productQuantityA = request.POST['productQuantityA'] if request.POST['productQuantityA'] != "" else 0
+        productQuantityB = request.POST['productQuantityB'] if request.POST['productQuantityB'] != "" else 0
+        productQuantityA = int(productQuantityA)
+        productQuantityA = int(productQuantityA)
+        street = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
+        province = request.POST['province'] if request.POST['province'] != "" else "Anonymous"
+        # city
+        # customerAddress
+        productPriceA = productQuantityA * 5000
+        productPriceB = productQuantityB * 7000
+        productPriceA = int(productPriceA)
+        productPriceB = int(productPriceB)
+        totalProductPrice = productPriceA + productPriceB
+        # totalPrice
+        print("productQuantityA " + str(productQuantityA))
+        print("street " + str(street))
+        print("province " + str(province))
+        print("productPriceA " + str(productPriceA))
+        print("productPriceB " + str(productPriceB))
+        print("totalProductPrice " + str(totalProductPrice))
 
 def get_province(request):
     conn = http.client.HTTPSConnection("api.rajaongkir.com")
@@ -27,6 +46,4 @@ def get_province(request):
     data = res.read()
     data = data.decode("utf-8")
     data = json.loads(data)
-    print(data['rajaongkir']['status']['description'])
-    print(data['rajaongkir']['results'][0])
     return JsonResponse(data)
