@@ -126,6 +126,7 @@
 <script src="{% static 'js/formTest.js' %}"></script>
 <script>
   $(document).ready(function(){
+    // Ajax untuk mendapat data provinsi dan ditampilkan dalam select province
     $.ajax({
         method: "GET",
         url: "{% url "IHAM_app:get_province" %}",
@@ -141,6 +142,8 @@
             hi(listProvince);
         },
     });
+
+    // Menampilkan halaman HTML [HARUS SELALU DIAKHIR DOCUMENT READY]
     $("body").css("display", "inherit");
   });
 </script>
