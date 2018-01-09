@@ -1,6 +1,14 @@
+window.addEventListener( "pageshow", function ( event ) {
+  var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+  if ( historyTraversal ) {
+    // Handle page restore.
+    window.location.reload();
+  }
+});
 
 $(document).ready(function(){
-
+  $("#quantity-productA").val("");
+  $("#quantity-productB").val("");
 
   $("#checkboxA").change(function(){
     $("#quantity-productA").toggle();
@@ -31,8 +39,6 @@ $(document).ready(function(){
     $("#harga-barang").text(getHargaBarang());
     $("#total-harga").text(getHargaBarang());
   });
-
-
 });
 
 function getValueA(){
