@@ -122,4 +122,4 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
 
 # Login redirect
-LOGIN_REDIRECT_URL = '/adminIHA/'
+LOGIN_REDIRECT_URL = '/login/adminIHA/'
