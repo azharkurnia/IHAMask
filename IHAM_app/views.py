@@ -10,6 +10,7 @@ def form_test(request):
     response['city'] = get_city(request)
     return render(request, 'formTest.html', response)
 
+# Method untuk get data dari form order lalu masukkan ke models
 def add_order_data_to_models(request):
     if(request.method == 'POST'):
         customerName = request.POST['name'] if request.POST['name'] != "" else "Anonymous"
@@ -36,6 +37,7 @@ def add_order_data_to_models(request):
         print("productPriceB " + str(productPriceB))
         print("totalProductPrice " + str(totalProductPrice))
 
+# Method untuk dapatkan semua list provinsi
 def get_province(request):
     conn = http.client.HTTPSConnection("api.rajaongkir.com")
 
