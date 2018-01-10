@@ -24,7 +24,7 @@ def add_order_data_to_models(request):
         productQuantityA = int(productQuantityA)
         productQuantityB = int(productQuantityB)
         street = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
-        province = request.POST['province'] if request.POST['province'] != "" else "Anonymous"
+        # province
         # city
         # customerAddress
         productPriceA = productQuantityA * 5000
@@ -80,16 +80,17 @@ def get_city(request):
     data = res.read()
     data = data.decode("utf-8")
     data_city = json.loads(data)
+    print(data)
     return JsonResponse(data_city)
 
-def get_price(request,destination):
+def get_price(request, destination):
 
     conn = http.client.HTTPSConnection("api.rajaongkir.com")
-
+    print("destination " + destination)
     payload = "origin=22&destination="+destination+"&weight=1000&courier=jne"
 
     headers = {
-        'key': "your-api-key",
+        'key': "ea827133edd06f4d89a5296c0661c3e4",
         'content-type': "application/x-www-form-urlencoded"
         }
 
@@ -97,5 +98,6 @@ def get_price(request,destination):
 
     res = conn.getresponse()
     data = res.read()
-
+    cost_Data = json.loads(data)
     print(data.decode("utf-8"))
+    return JsonResponse(cost_Data)

@@ -9,6 +9,7 @@ window.addEventListener( "pageshow", function ( event ) {
 
 $(document).ready(function(){
   // Memastikan value kuantitas nol di awal
+  var shipping_cost;
   $("#quantity-productA").val("");
   $("#quantity-productB").val("");
 
@@ -18,8 +19,12 @@ $(document).ready(function(){
     if (display.includes("none")) { //Kalo input field quantity di ilangin, value nya di reset juga
       $("#quantity-productA").val("");
     }
-    $("#harga-barang").text(getHargaBarang());  //Selalu update harga barang
-    $("#total-harga").text(getHargaBarang()); //Selalu update total harga
+    shipping_cost = $("#ongkos-kirim").text();
+    product_price = getHargaBarang();
+    shipping_cost = parseInt(shipping_cost);
+    product_price = parseInt(product_price);
+    $("#harga-barang").text(product_price);  //Selalu update harga barang
+    $("#total-harga").text((product_price + shipping_cost)); //Selalu update total harga
   });
   $("#checkboxB").change(function(){
     $("#quantity-productB").toggle();
@@ -27,18 +32,30 @@ $(document).ready(function(){
     if (display.includes("none")) {
       $("#quantity-productB").val("");
     }
-    $("#harga-barang").text(getHargaBarang());
-    $("#total-harga").text(getHargaBarang());
+    shipping_cost = $("#ongkos-kirim").text();
+    product_price = getHargaBarang();
+    shipping_cost = parseInt(shipping_cost);
+    product_price = parseInt(product_price);
+    $("#harga-barang").text(product_price);  //Selalu update harga barang
+    $("#total-harga").text((product_price + shipping_cost)); //Selalu update total harga
   });
 
   // Setiap update kuantitas produk, update harga juga
   $("#quantity-productA").keyup(function(){
-    $("#harga-barang").text(getHargaBarang());
-    $("#total-harga").text(getHargaBarang());
+    shipping_cost = $("#ongkos-kirim").text();
+    product_price = getHargaBarang();
+    shipping_cost = parseInt(shipping_cost);
+    product_price = parseInt(product_price);
+    $("#harga-barang").text(product_price);  //Selalu update harga barang
+    $("#total-harga").text((product_price + shipping_cost)); //Selalu update total harga
   });
   $("#quantity-productB").keyup(function(){
-    $("#harga-barang").text(getHargaBarang());
-    $("#total-harga").text(getHargaBarang());
+    shipping_cost = $("#ongkos-kirim").text();
+    product_price = getHargaBarang();
+    shipping_cost = parseInt(shipping_cost);
+    product_price = parseInt(product_price);
+    $("#harga-barang").text(product_price);  //Selalu update harga barang
+    $("#total-harga").text((product_price + shipping_cost)); //Selalu update total harga
   });
 });
 
@@ -67,13 +84,13 @@ function getHargaBarang(){
   return ((getValueA() * hargaProductA) + (getValueB() * hargaProductB));
 }
 
+function getShippingCost(harga){
+  $("#ongkos-kirim").text(harga);
+}
+
 //Fungsi untuk tampilkan data pada select di form
 function hi(province){
   $(".my-select-province").select2({
     "data" : province
-
   });
-
-
-
 }
