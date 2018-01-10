@@ -177,7 +177,12 @@
         url: "/forum/get_price/" + (index+1) + "/",
         success : function(data) {
           console.log(data);
-          var shipping_cost = data['rajaongkir']['results'][0]['costs'][1]['cost'][0]['value'];
+          try {
+              var shipping_cost = data['rajaongkir']['results'][0]['costs'][1]['cost'][0]['value'];
+          }
+          catch(err) {
+              var shipping_cost = data['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'];
+          }
           getShippingCost(shipping_cost);
           shipping_cost = parseInt(shipping_cost);
           product_price = parseInt(getHargaBarang());
