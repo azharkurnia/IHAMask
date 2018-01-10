@@ -67,12 +67,12 @@ function getHargaBarang(){
   return ((getValueA() * hargaProductA) + (getValueB() * hargaProductB));
 }
 
-//Fungsi untuk tampilkan data pada select di form
-function hi(province){
-  $(".my-select-province").select2({
-    "data" : province
+ //Fungsi untuk tampilkan data pada select di form
+ function hi(province){
+   $(".my-select-province").select2({
+     "data" : province
 
-  });
+ });
 
 
 

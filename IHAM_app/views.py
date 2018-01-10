@@ -2,7 +2,7 @@ from django.shortcuts import render
 import http.client
 import json
 from django.http import HttpResponse, JsonResponse
-
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 response = {}
 
@@ -77,21 +77,24 @@ def get_city(request):
     data = data.decode("utf-8")
     data_city = json.loads(data)
     return JsonResponse(data_city)
+    
+@csrf_exempt
+def get_price(request):
+    if request.method == 'POST':
+        destination = request.POST['destination']
+        conn = http.client.HTTPSConnection("api.rajaongkir.com")
 
-def get_price(request,destination):
+        payload = "origin=22&destination="+destination+"&weight=1000&courier=jne"
 
-    conn = http.client.HTTPSConnection("api.rajaongkir.com")
+        headers = {
+            'key': "ea827133edd06f4d89a5296c0661c3e4",
+            'content-type': "application/x-www-form-urlencoded"
+            }
 
-    payload = "origin=22&destination="+destination+"&weight=1000&courier=jne"
+        conn.request("POST", "/starter/cost", payload, headers)
 
-    headers = {
-        'key': "your-api-key",
-        'content-type': "application/x-www-form-urlencoded"
-        }
-
-    conn.request("POST", "/starter/cost", payload, headers)
-
-    res = conn.getresponse()
-    data = res.read()
-
-    print(data.decode("utf-8"))
+        res = conn.getresponse()
+        data = res.read()
+        data_price = json.loads(data)
+        return JsonResponse(data_price)
+    return 0
