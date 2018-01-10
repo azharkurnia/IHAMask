@@ -9,6 +9,7 @@ class OrderList(models.Model):
     productQuantityB = models.IntegerField()
     customerAddress = models.CharField(max_length=140, blank=False)
     totalPrice = models.IntegerField(blank=False)
+    promoCode = models.CharField(max_length=140, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
 class promoCode(models.Model):

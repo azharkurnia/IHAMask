@@ -2,6 +2,7 @@ from django.shortcuts import render
 import http.client
 import json
 from django.http import HttpResponse, JsonResponse
+from .models import promoCode
 
 # Create your views here.
 response = {}
@@ -74,3 +75,8 @@ def get_price(request, destination):
     cost_Data = json.loads(data)
     print(data.decode("utf-8"))
     return JsonResponse(cost_Data)
+
+def check_code(request, current_code):
+    print(current_code)
+    promo = promoCode.objects.filter(promoName=current_code)
+    return HttpResponse(promo)
