@@ -84,18 +84,23 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="form-control-label">Street</label>
-                    <input type="text" class="form-control w-100" required="required" name="street">
+                    <input type="text" class="form-control w-100" required="required" name="street" onkeyup="updateAddress()" id="street">
                   </div>
                   <div class="form-group">
                     <label class="form-control-label">District/City</label>
-                      <select class="form-control my-select-city" name="city">
-                        <option value=""></option>
-                      </select>
+                    <select class="form-control my-select-city" name="city" style="width: 100%;">
+                      <option value=""></option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label">Postal Code</label>
+                    <input type="text" class="form-control w-100" required="required" name="postal" onkeyup="updateAddress()" id="postal">
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
+                  <p>Order Address: <span id="order-address"></span></p>
                   <p>Shipping Price: Rp <span id="ongkos-kirim">0</span></p>
                   <h2>Total Price: Rp <span id="total-harga">0</span></h2>
                 </div>
@@ -119,6 +124,18 @@
 <!-- JS -->
 <script src="{% static 'js/formTest.js' %}"></script>
 <script>
+  var kotaDipilih;
+  var updateAddress = function(){
+    var street = $("#street").val();
+    try {
+      var city = kotaDipilih['text'];
+      var province = kotaDipilih['province'];
+      var postal_code = $("#postal").val();
+      $("#order-address").text(street + " , " + city + " , " + province + " , " + postal_code);
+    } catch (e) {
+      $("#order-address").text(street);
+    }
+  }
 
   $(document).ready(function(){
     var listCity;
@@ -135,13 +152,12 @@
               listCity[i]['text'] = listCity[i]['type'] + " " + listCity[i]['city_name'];
             }
             console.log(listCity);
+            if (localStorage.getItem("listCity") === null) {
+              localStorage.setItem("listCity", JSON.stringify(listCity));
+            }
             $(".my-select-city").select2({
               "data" : listCity
              });
-
-            return listCity;
-
-        
     }});
 
     $(".my-select-city").on('change', function (e){
@@ -150,22 +166,25 @@
       for (var i = 0; i < listCity.length; i++){
         if (listCity[i]['id'] == id_kota){
           index = i;
+          kotaDipilih = listCity[i]
           break;
         }
       }
+      console.log(kotaDipilih);
+      updateAddress();
       $.ajax({
-        method: "POST",
-        url: "{%url "IHAM_app:get_price" %}",
-        data:{
-          destination: listCity[index]['id']
-
-        },
+        method: "GET",
+        url: "/forum/get_price/" + index + "/",
         success : function(data) {
-          $("#ongkos-kirim").text(data['rajaongkir']['results'][0]['costs'][1]['cost'][0]['value']);
+          console.log(data);
+          var shipping_cost = data['rajaongkir']['results'][0]['costs'][1]['cost'][0]['value'];
+          getShippingCost(shipping_cost);
+          shipping_cost = parseInt(shipping_cost);
+          product_price = parseInt(getHargaBarang());
+          $("#total-harga").text((product_price + shipping_cost));
         }
       })
     });
-
 
     // Menampilkan halaman HTML [HARUS SELALU DIAKHIR DOCUMENT READY]
     $("body").css("display", "inherit");

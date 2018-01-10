@@ -2,12 +2,11 @@ from django.shortcuts import render
 import http.client
 import json
 from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 response = {}
 
 def form_test(request):
-    response['city'] = get_city(request)
     return render(request, 'formTest.html', response)
 
 def index(request):
@@ -22,9 +21,9 @@ def add_order_data_to_models(request):
         productQuantityA = request.POST['productQuantityA'] if request.POST['productQuantityA'] != "" else 0
         productQuantityB = request.POST['productQuantityB'] if request.POST['productQuantityB'] != "" else 0
         productQuantityA = int(productQuantityA)
-        productQuantityA = int(productQuantityA)
+        productQuantityB = int(productQuantityB)
         street = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
-        province = request.POST['province'] if request.POST['province'] != "" else "Anonymous"
+        # province
         # city
         # customerAddress
         productPriceA = productQuantityA * 5000
@@ -34,6 +33,7 @@ def add_order_data_to_models(request):
         totalProductPrice = productPriceA + productPriceB
         # totalPrice
         print("productQuantityA " + str(productQuantityA))
+        print("productQuantityB " + str(productQuantityB))
         print("street " + str(street))
         print("province " + str(province))
         print("productPriceA " + str(productPriceA))
@@ -52,6 +52,7 @@ def get_city(request):
     data = res.read()
     data = data.decode("utf-8")
     data_city = json.loads(data)
+    print(data)
     return JsonResponse(data_city)
     
 # method untuk mendapatkan harga ongkir dari kota bandung ke kota/kabupaten 
