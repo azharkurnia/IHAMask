@@ -7,7 +7,6 @@ from django.http import HttpResponse, JsonResponse
 response = {}
 
 def form_test(request):
-    response['city'] = get_city(request)
     return render(request, 'formTest.html', response)
 
 def index(request):
