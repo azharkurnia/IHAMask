@@ -7,7 +7,11 @@ from django.http import HttpResponse, JsonResponse
 response = {}
 
 def form_test(request):
+    response['city'] = get_city(request)
     return render(request, 'formTest.html', response)
+
+def index(request):
+    return render(request, 'index.html', response)
 
 # Method untuk get data dari form order lalu masukkan ke models
 def add_order_data_to_models(request):
@@ -48,5 +52,50 @@ def get_province(request):
     res = conn.getresponse()
     data = res.read()
     data = data.decode("utf-8")
-    data = json.loads(data)
-    return JsonResponse(data)
+    data_province = json.loads(data)
+    return JsonResponse(data_province)
+
+
+def get_city_render(request):
+
+    conn = http.client.HTTPSConnection("api.rajaongkir.com")
+
+    headers = { 'key': "ea827133edd06f4d89a5296c0661c3e4" }
+
+    conn.request("GET", "/starter/city", headers=headers)
+    res = conn.getresponse()
+    data = res.read()
+    data = data.decode("utf-8")
+    data_city = json.loads(data)
+    return JsonResponse(data_city)
+
+def get_city(request):
+
+    conn = http.client.HTTPSConnection("api.rajaongkir.com")
+
+    headers = { 'key': "ea827133edd06f4d89a5296c0661c3e4" }
+
+    conn.request("GET", "/starter/city", headers=headers)
+    res = conn.getresponse()
+    data = res.read()
+    data = data.decode("utf-8")
+    data_city = json.loads(data)
+    return JsonResponse(data_city)
+
+def get_price(request,destination):
+
+    conn = http.client.HTTPSConnection("api.rajaongkir.com")
+
+    payload = "origin=22&destination="+destination+"&weight=1000&courier=jne"
+
+    headers = {
+        'key': "your-api-key",
+        'content-type': "application/x-www-form-urlencoded"
+        }
+
+    conn.request("POST", "/starter/cost", payload, headers)
+
+    res = conn.getresponse()
+    data = res.read()
+
+    print(data.decode("utf-8"))
