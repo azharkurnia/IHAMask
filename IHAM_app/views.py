@@ -18,7 +18,7 @@ def add_order_data_to_models(request):
         productQuantityA = request.POST['productQuantityA'] if request.POST['productQuantityA'] != "" else 0
         productQuantityB = request.POST['productQuantityB'] if request.POST['productQuantityB'] != "" else 0
         productQuantityA = int(productQuantityA)
-        productQuantityA = int(productQuantityA)
+        productQuantityB = int(productQuantityB)
         street = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
         province = request.POST['province'] if request.POST['province'] != "" else "Anonymous"
         # city
@@ -30,6 +30,7 @@ def add_order_data_to_models(request):
         totalProductPrice = productPriceA + productPriceB
         # totalPrice
         print("productQuantityA " + str(productQuantityA))
+        print("productQuantityB " + str(productQuantityB))
         print("street " + str(street))
         print("province " + str(province))
         print("productPriceA " + str(productPriceA))
