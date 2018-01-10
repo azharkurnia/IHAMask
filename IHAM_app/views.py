@@ -40,34 +40,7 @@ def add_order_data_to_models(request):
         print("productPriceB " + str(productPriceB))
         print("totalProductPrice " + str(totalProductPrice))
 
-# Method untuk dapatkan semua list provinsi
-def get_province(request):
-    conn = http.client.HTTPSConnection("api.rajaongkir.com")
-
-    headers = { 'key': "ea827133edd06f4d89a5296c0661c3e4" }
-
-    conn.request("GET", "/starter/province", headers=headers)
-
-    res = conn.getresponse()
-    data = res.read()
-    data = data.decode("utf-8")
-    data_province = json.loads(data)
-    return JsonResponse(data_province)
-
-
-def get_city_render(request):
-
-    conn = http.client.HTTPSConnection("api.rajaongkir.com")
-
-    headers = { 'key': "ea827133edd06f4d89a5296c0661c3e4" }
-
-    conn.request("GET", "/starter/city", headers=headers)
-    res = conn.getresponse()
-    data = res.read()
-    data = data.decode("utf-8")
-    data_city = json.loads(data)
-    return JsonResponse(data_city)
-
+# method untuk mendapatkan semua kota atau kabupaten
 def get_city(request):
 
     conn = http.client.HTTPSConnection("api.rajaongkir.com")
@@ -81,6 +54,7 @@ def get_city(request):
     data_city = json.loads(data)
     return JsonResponse(data_city)
     
+# method untuk mendapatkan harga ongkir dari kota bandung ke kota/kabupaten 
 @csrf_exempt
 def get_price(request):
     if request.method == 'POST':
