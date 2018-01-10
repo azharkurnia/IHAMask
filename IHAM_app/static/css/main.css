@@ -324,7 +324,7 @@ body
 }
 .quote{
 	font-style: italic;
-	font-size: 25px;
+	font-size: 15px;
 	font-weight: 200;
 	padding: 0px 145px;
 }
@@ -427,11 +427,12 @@ a .instagram:hover{
 }
 .testimonial-detail{
 	font-style: italic;
-	font-size: 15px;
+	font-size: 25px;
 	font-weight: 200;
 	margin-bottom: 50px;
 }
 .test-name {
+	font-size: 30px;
     margin-bottom: 40px;
 }
 /*Owl carousel*/

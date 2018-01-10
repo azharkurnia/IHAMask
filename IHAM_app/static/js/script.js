@@ -38,19 +38,26 @@ $(document).ready(function() {
     });
 
     $('.add-owl').owlCarousel({
-        items: 4,
         nav: true,
         navText: false,
         dots: false,
-        loop: true
-    });
-
-    $('.twitter-owl').owlCarousel({
-        items: 1,
-        nav: true,
-        navText: false,
-        dots: false,
-        loop: true
+        loop: true,
+        responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                        nav:true
+                    },
+                    600:{
+                        items:3,
+                        nav:false
+                    },
+                    1000:{
+                        items:4,
+                        nav:true,
+                        loop:false
+                    }
+                }
     });
 
 });
