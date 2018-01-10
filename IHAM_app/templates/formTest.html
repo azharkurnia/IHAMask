@@ -174,7 +174,7 @@
       updateAddress();
       $.ajax({
         method: "GET",
-        url: "/forum/get_price/" + index + "/",
+        url: "/forum/get_price/" + (index+1) + "/",
         success : function(data) {
           console.log(data);
           var shipping_cost = data['rajaongkir']['results'][0]['costs'][1]['cost'][0]['value'];

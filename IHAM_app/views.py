@@ -54,25 +54,23 @@ def get_city(request):
     data_city = json.loads(data)
     print(data)
     return JsonResponse(data_city)
-    
-# method untuk mendapatkan harga ongkir dari kota bandung ke kota/kabupaten 
-@csrf_exempt
-def get_price(request):
-    if request.method == 'POST':
-        destination = request.POST['destination']
-        conn = http.client.HTTPSConnection("api.rajaongkir.com")
 
-        payload = "origin=22&destination="+destination+"&weight=1000&courier=jne"
 
-        headers = {
-            'key': "ea827133edd06f4d89a5296c0661c3e4",
-            'content-type': "application/x-www-form-urlencoded"
-            }
+def get_price(request, destination):
 
-        conn.request("POST", "/starter/cost", payload, headers)
+    conn = http.client.HTTPSConnection("api.rajaongkir.com")
+    print("destination " + destination)
+    payload = "origin=22&destination="+destination+"&weight=1000&courier=jne"
 
-        res = conn.getresponse()
-        data = res.read()
-        data_price = json.loads(data)
-        return JsonResponse(data_price)
-    return 0
+    headers = {
+        'key': "ea827133edd06f4d89a5296c0661c3e4",
+        'content-type': "application/x-www-form-urlencoded"
+        }
+
+    conn.request("POST", "/starter/cost", payload, headers)
+
+    res = conn.getresponse()
+    data = res.read()
+    cost_Data = json.loads(data)
+    print(data.decode("utf-8"))
+    return JsonResponse(cost_Data)
