@@ -10,6 +10,9 @@ def form_test(request):
     response['city'] = get_city(request)
     return render(request, 'formTest.html', response)
 
+def index(request):
+    return render(request, 'index.html', response)
+
 # Method untuk get data dari form order lalu masukkan ke models
 def add_order_data_to_models(request):
     if(request.method == 'POST'):
