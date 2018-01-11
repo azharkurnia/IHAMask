@@ -15,3 +15,19 @@ class OrderList(models.Model):
 class promoCode(models.Model):
 	promoName = models.CharField(max_length=10, blank=False)
 	promoAmount = models.FloatField(blank=False)
+
+class upcomingEvents(models.Model):
+	eventName= models.CharField(max_length=140, blank=False)
+	eventURL= models.CharField(max_length=140, blank=False)
+	eventDate= models.CharField(max_length=140, blank=False)
+	eventVenue= models.CharField(max_length=140, blank=False)
+	def __str__(self):
+		return self.eventName
+
+class FAQ(models.Model):
+	titleIndo = models.TextField()
+	titleEng = models.TextField()
+	isiIndo = models.TextField()
+	isiEng = models.TextField()
+	def __str__(self):
+		return self.titleEng

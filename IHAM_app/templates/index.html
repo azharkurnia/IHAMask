@@ -23,6 +23,85 @@
 	    <link rel="stylesheet" href="{% static 'css/order.css' %}">
 	    <link rel="stylesheet" href="{% static 'css/products.css' %}">
 	    <link rel="stylesheet" href="{% static 'css/one-page-style.css' %}">
+	    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	    <style type="text/css">
+	    	.panel-default>.panel-heading {
+  color: #333;
+  background-color: #fff;
+  border-color: #e4e5e7;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.panel-default>.panel-heading a {
+  display: block;
+  padding: 10px 15px;
+}
+
+.panel-default>.panel-heading a:after {
+  content: "";
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  float: right;
+  transition: transform .25s linear;
+  -webkit-transition: -webkit-transform .25s linear;
+}
+
+.panel-default>.panel-heading a[aria-expanded="true"] {
+  background-color: #eee;
+}
+
+.panel-default>.panel-heading a[aria-expanded="true"]:after {
+  content: "\2212";
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.panel-default>.panel-heading a[aria-expanded="false"]:after {
+  content: "\002b";
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.accordion-option {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin: 15px 0;
+}
+
+.accordion-option .title {
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+.accordion-option .toggle-accordion {
+  float: right;
+  font-size: 16px;
+  color: #6a6c6f;
+}
+
+.accordion-option .toggle-accordion:before {
+  content: "Expand All";
+}
+
+.accordion-option .toggle-accordion.active:before {
+  content: "Collapse All";
+}
+	    </style>
 	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 			<!--[if lt IE 9]>
 				<script src="{% static 'js/html5shiv.js"></script>
@@ -128,138 +207,51 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies consect
 			</p> <!-- /.quote -->
 		</div> <!-- /.container -->
 	</section> <!-- /.note -->
-	
-
-<!-- Deskripsi Produk -->
+	<!-- Deskripsi Produk -->
 	<section class="fun">
 		<div class="container section-wrapper">
 		<h2 class="section-title black">
-				Tea Tree Organic
+				Tea tree Organic Painless Peel Off Mask
 			</h2> <!-- /.section-title -->
 			<div class="underline purple"></div>	
 			<div class="row">
 				<div class="col-sm-3 col-xs-6">
 					<div class="fun-box">
-						<div class="number">
-							1956628
-						</div>
 						<div class="number-title">
-							lines of code
+							price
 						</div>
+						<div class="number">
+							IDR 89.000
+						</div>
+						<p>Including paper bag, manual book, IHA mask powder (50gram), Spoon</p>
 					</div> <!-- /.fun-box -->
 				</div> <!-- /.col-md-3 -->
-				<div class="col-sm-3 col-xs-6">
-					<div class="fun-box">
-						<div class="number">
-							1473
-						</div>
-						<div class="number-title">
-							cups of coffee
-						</div>
-					</div> <!-- /.fun-box -->
-				</div> <!-- /.col-md-3 -->
-				<div class="col-sm-3 col-xs-6">
-					<div class="fun-box">
-						<div class="number">
-							500
-						</div>
-						<div class="number-title">
-							projects delivered
-						</div>
-					</div> <!-- /.fun-box -->
-				</div> <!-- /.col-md-3 -->
-				<div class="col-sm-3 col-xs-6">
-					<div class="fun-box">
-						<div class="number">
-							101
-						</div>
-						<div class="number-title">
-							satisfied clients
-						</div>
-					</div> <!-- /.fun-box -->
-				</div> <!-- /.col-md-3 -->
+				<div class="col-sm-9 col-xs-6">
+				<div id="feed2" class="owl-carousel add-owl">
+		        </div> <!-- /.owl-carousel -->
+		    </div>
 			</div> <!-- /.row -->
 		</div> <!-- /.container -->
 	</section> <!-- /.fun -->
 
 
 <!-- Our productss -->
-	<section class="products" id="products">
+	<section class="products" id="faq">
 		<div class="container">
 			<div class="_section-wrapper">
 				<h2 class="section-title black">
 					Frequently Asked Questions
 				</h2> <!-- /.section-title -->
 				<div class="underline purple"></div>
-				<div class="row">
-					<div class="">
-						<img src="{% static 'images/products.png' %}" alt="products" class="products-img img-responsive">
-					</div>
-					<div class="col-md-offset-4 col-md-8 col-sm-12 productss">
-						<div class="row">
-							<div class="col-xs-6 col-sm-4">
-								<div class="products-item">
-									<h3 class="section-item-title">
-										question
-									</h3>
-									<p class="section-item-detail">
-										heheheehhehehehheheheheheh
-									</p>
-								</div> <!-- /.products-item -->
-							</div>
-							<div class="col-xs-6 col-sm-4">
-								<div class="products-item">
-									<h3 class="section-item-title">
-										question
-									</h3>
-									<p class="section-item-detail">
-										heheheehhehehehhehehehehehehhehhehehehehhehehehehehhehehehehehehhehehhehehhe									</p>
-								</div> <!-- /.products-item -->
-							</div>
-							<div class="col-xs-6 col-sm-4">
-								<div class="products-item">
-									<h3 class="section-item-title">
-										question
-									</h3>
-									<p class="section-item-detail">
-										heheheehhehehehhehehehehehehhehhehehehehhehehehehehhehehehehehehhehehhehehhe
-									</p>
-								</div> <!-- /.products-item -->
-							</div>
-							<div class="col-xs-6 col-sm-4">
-								<div class="products-item">
-									<h3 class="section-item-title">
-										question
-									</h3>
-									<p class="section-item-detail">
-										heheheehhehehehhehehehehehehhehhehehehehhehehehehehhehehehehehehhehehhehehhe
-									</p>
-								</div> <!-- /.products-item -->
-							</div>
-							<div class="col-xs-6 col-sm-4">
-								<div class="products-item">
-									<h3 class="section-item-title">
-										question
-									</h3>
-									<p class="section-item-detail">
-										heheheehhehehehhehehehehehehhehhehehehehhehehehehehhehehehehehehhehehhehehhe
-									</p>
-								</div> <!-- /.products-item -->
-							</div>
-							<div class="col-xs-6 col-sm-4">
-								<div class="products-item">
-									<h3 class="section-item-title">
-										question
-									</h3>
-									<p class="section-item-detail">
-										heheheehhehehehhehehehehehehhehhehehehehhehehehehehhehehehehehehhehehhehehhe
-									</p>
-								</div> <!-- /.products-item -->
-							</div>
-						</div> <!-- /.row -->
-					</div> <!-- /.col-md-6 -->
-				</div> <!-- /.row -->
-			</div> <!-- /.section-wrapper -->
+				<div id="accordion">
+				{% for i in faq %}
+				  <h3><strong>{{ i.titleEng}}</strong><br>{{i.titleIndo}}</h3>
+				  <div>
+				    <p><strong>{{ i.isiEng}}</strong><br>{{i.isiIndo}}</p>
+				  </div>
+				  {% endfor %}
+				</div>
+				<div class="underline purple"></div>
 		</div> <!-- /.container -->
 	</section> <!-- /.products -->
 
@@ -271,27 +263,18 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies consect
 			</div> <!-- /.section-title -->
 			<div class="underline white"></div>
 			<div class="owl-carousel testimonial-owl">
+				{% for i in events %}
 				<div class="item">
 					<div class="test-name">
-					<strong>Pop Up Market</strong>
+					<strong>{{ i.eventName }}</strong>
 					<br>
-					Kuningan City Mall
+					{{ i.eventVenue }}
 					</div>
 					<p class="testimonial-detail">
-				    8-11 March 2018
+				    {{ i.eventDate }}
 					</p>
 				</div> <!-- /.item -->
-			<div class="owl-carousel testimonial-owl">
-				<div class="item">
-					<div class="test-name">
-					<strong>Bandung Beauty Expo</strong>
-					<br>
-					Trans Luxury Hotel Bandung
-					</div>
-					<p class="testimonial-detail">
-				    8-11 March 2018
-					</p>
-				</div> <!-- /.item -->
+				{% endfor %}
 			</div> <!-- /.owl-carousel -->
 		</div> <!-- /.container -->
 	</section> <!-- /.testimonial -->
@@ -379,8 +362,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies consect
 					</div>		
 				</div>
 				<div class="col-sm-4 text-right">
-					<div class="copy">
-						Developed by </a>. All Rights Reserved
+					<div class="copy">developed by A C F F
 					</div>
 				</div>
 			</div> <!-- /.row -->
@@ -394,7 +376,34 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies consect
     <script src="{% static 'js/owl.carousel.min.js' %}"></script>
     <script src="{% static 'js/order.js' %}"></script>
 	<script src="{% static 'js/script.js' %}"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript">
+		$(document).ready(function() {
+
+  $(".toggle-accordion").on("click", function() {
+    var accordionId = $(this).attr("accordion-id"),
+      numPanelOpen = $(accordionId + ' .collapse.in').length;
+    
+    $(this).toggleClass("active");
+
+    if (numPanelOpen == 0) {
+      openAllPanels(accordionId);
+    } else {
+      closeAllPanels(accordionId);
+    }
+  })
+
+  openAllPanels = function(aId) {
+    console.log("setAllPanelOpen");
+    $(aId + ' .panel-collapse:not(".in")').collapse('show');
+  }
+  closeAllPanels = function(aId) {
+    console.log("setAllPanelclose");
+    $(aId + ' .panel-collapse.in').collapse('hide');
+  }
+     
+});
+
 		$(document).ready(function(){
 		$.ajax({
         method: "GET",
@@ -408,6 +417,25 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies consect
     }
 })
 })
+
+		$(document).ready(function(){
+		$.ajax({
+        method: "GET",
+        url: "https://www.instagram.com/ihamask/?__a=1",
+        success : function(data) {
+        	for (var i = 0; i < data.user.media.nodes.length; i++) {
+        	 	var content = $('<img src="'+data.user.media.nodes[i].display_src+'"class="add-item"  >')
+	        	 $('#feed2').trigger('add.owl.carousel', [content,i])
+        }
+            $('#feed2').trigger('refresh.owl.carousel');
+    }
+})
+})
+		$( function() {
+    $( "#accordion" ).accordion({
+      collapsible: true
+    });
+  } );
 	</script>
 	
 </body>

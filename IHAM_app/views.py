@@ -2,7 +2,7 @@ from django.shortcuts import render
 import http.client
 import json
 from django.http import HttpResponse, JsonResponse
-from .models import promoCode
+from .models import promoCode, upcomingEvents, FAQ
 
 # Create your views here.
 response = {}
@@ -11,6 +11,8 @@ def form_test(request):
     return render(request, 'formTest.html', response)
 
 def index(request):
+    response['events'] = upcomingEvents.objects.all()
+    response['faq'] = FAQ.objects.all()
     return render(request, 'index.html', response)
 
 # Method untuk get data dari form order lalu masukkan ke models
