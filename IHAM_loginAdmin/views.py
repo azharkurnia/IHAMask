@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from .models import PromoCode
+from django.http import HttpResponseRedirect
 # Create your views here.
 response = {}
 def show_login(request):
