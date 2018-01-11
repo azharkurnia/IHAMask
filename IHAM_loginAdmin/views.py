@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from .models import PromoCode
+from django.http import HttpResponseRedirect
 # Create your views here.
 response = {}
 def show_login(request):
@@ -17,7 +18,9 @@ def logged_in(request):
 def add_promo_code(request):
 	if(request.method == 'POST'):
 		response['code'] = request.POST['code']
+		print("code " + str(request.POST['code']))
 		response['amount'] = request.POST['amount']
+		print("amount " + str(request.POST['amount']))
 		promoCodeList = PromoCode(promoCode=response['code'],promoAmount=response['amount'])
 		promoCodeList.save()
 		return HttpResponseRedirect('/login/adminIHA/')
