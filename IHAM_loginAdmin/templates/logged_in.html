@@ -18,13 +18,13 @@
 				<div class="form-group">
 	                  <label for="InputName">Promo Code</label>
 	                  <div class="input-group">
-	                    <input type="text" class="form-control" id="InputCode" placeholder="Enter the promo code" name="code">
+	                    <input type="text" class="form-control" id="InputCode" placeholder="Enter the promo code" name="code" required>
 	                  </div>
 	            </div>
 	            <div class="form-group">
                   <label class="form-control-label">Promo Amount(%)</label>
                   <div class="input-group">
-                    <input type="number" class="form-control" placeholder="Enter the promo amount" min="0" step="1" id="promo-amount" title="Input must be a number" name="amount">
+                    <input type="number" class="form-control" placeholder="Enter the promo amount" min="0" step="1" id="promo-amount" title="Input must be a number" name="amount" required>
                   </div>
                 </div>
         	</div>
@@ -44,7 +44,7 @@
             {% for promo in promoCodeList %}
                 <tr>
                     <td class="codeTable">{{ promo.promoCode }}</td>
-                    <td class="amountTable">{{ promo.promoAmount }}</td>
+                    <td class="amountTable">{{ promo.promoAmount }}%</td>
                 </tr>
             {% endfor %}
         </table>
