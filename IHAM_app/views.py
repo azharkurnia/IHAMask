@@ -2,7 +2,10 @@ from django.shortcuts import render
 import http.client
 import json
 from django.http import HttpResponse, JsonResponse
-from .models import promoCode, upcomingEvents, FAQ
+from .models import upcomingEvents, FAQ
+from IHAM_loginAdmin.models import PromoCode
+from django.core import serializers
+import ast
 
 # Create your views here.
 response = {}
@@ -79,6 +82,20 @@ def get_price(request, destination):
     return JsonResponse(cost_Data)
 
 def check_code(request, current_code):
-    print(current_code)
-    promo = promoCode.objects.filter(promoName=current_code)
-    return HttpResponse(promo)
+    # print(current_code)
+    try:
+        promo = PromoCode.objects.get(promoCode=current_code)
+        promo = model_to_dict(promo)
+        promo = ast.literal_eval(promo)
+        print(promo)
+        return JsonResponse(promo)
+    except PromoCode.DoesNotExist:
+        promo = None
+        print(promo)
+        return HttpResponse(promo)
+
+def model_to_dict(obj):
+    data = serializers.serialize('json', [obj,])
+    struct = json.loads(data)
+    data = json.dumps(struct[0]["fields"])
+    return data

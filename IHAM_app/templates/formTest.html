@@ -147,20 +147,19 @@
       $("#order-address").text(street);
     }
   }
-  //Belum di cek nunggu fitur fajrin jadi
   var check_promo = function(){
     var current_code = $("#promotion-code").val();
     $.ajax({
       method: "GET",
       url: "/forum/check_code/" + current_code + "/",
       success : function(data){
-        console.log(data);
-        if (data != "") {
-          promoAmount = data.promoAmount;
-          $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount Rp " + promoAmount + "  </p>")
+        if ((typeof data) == "object") {
+          promoAmount = data['promoAmount'];
+          $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount <span id='promo-amount'>" + promoAmount + "</span> % of total price</p>")
         } else {
           $("#promo-icon").html("<p>&#10006;</p>")
         }
+        updatePrice();
       }
     });
   }
@@ -206,16 +205,18 @@
         url: "/forum/get_price/" + (index+1) + "/",
         success : function(data) {
           console.log(data);
-          try {
-              var shipping_cost = data['rajaongkir']['results'][0]['costs'][1]['cost'][0]['value'];
-          }
-          catch(err) {
-              var shipping_cost = data['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'];
+          if ((data['rajaongkir']['results'][0]['costs']).length > 0) {
+            try {
+                var shipping_cost = data['rajaongkir']['results'][0]['costs'][1]['cost'][0]['value'];
+            }
+            catch(err) {
+                var shipping_cost = data['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'];
+            }
+          } else {
+              shipping_cost = 0;
           }
           getShippingCost(shipping_cost);
-          shipping_cost = parseInt(shipping_cost);
-          product_price = parseInt(getHargaBarang());
-          $("#total-harga").text((product_price + shipping_cost));
+          updatePrice();
         }
       })
     });

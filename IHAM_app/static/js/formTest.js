@@ -19,12 +19,7 @@ $(document).ready(function(){
     if (display.includes("none")) { //Kalo input field quantity di ilangin, value nya di reset juga
       $("#quantity-productA").val("");
     }
-    shipping_cost = $("#ongkos-kirim").text();
-    product_price = getHargaBarang();
-    shipping_cost = parseInt(shipping_cost);
-    product_price = parseInt(product_price);
-    $("#harga-barang").text(product_price);  //Selalu update harga barang
-    $("#total-harga").text((product_price + shipping_cost)); //Selalu update total harga
+    updatePrice();
   });
   $("#checkboxB").change(function(){
     $("#quantity-productB").toggle();
@@ -32,30 +27,15 @@ $(document).ready(function(){
     if (display.includes("none")) {
       $("#quantity-productB").val("");
     }
-    shipping_cost = $("#ongkos-kirim").text();
-    product_price = getHargaBarang();
-    shipping_cost = parseInt(shipping_cost);
-    product_price = parseInt(product_price);
-    $("#harga-barang").text(product_price);  //Selalu update harga barang
-    $("#total-harga").text((product_price + shipping_cost)); //Selalu update total harga
+    updatePrice();
   });
 
   // Setiap update kuantitas produk, update harga juga
   $("#quantity-productA").keyup(function(){
-    shipping_cost = $("#ongkos-kirim").text();
-    product_price = getHargaBarang();
-    shipping_cost = parseInt(shipping_cost);
-    product_price = parseInt(product_price);
-    $("#harga-barang").text(product_price);  //Selalu update harga barang
-    $("#total-harga").text((product_price + shipping_cost)); //Selalu update total harga
+    updatePrice();
   });
   $("#quantity-productB").keyup(function(){
-    shipping_cost = $("#ongkos-kirim").text();
-    product_price = getHargaBarang();
-    shipping_cost = parseInt(shipping_cost);
-    product_price = parseInt(product_price);
-    $("#harga-barang").text(product_price);  //Selalu update harga barang
-    $("#total-harga").text((product_price + shipping_cost)); //Selalu update total harga
+    updatePrice();
   });
 });
 
@@ -85,7 +65,11 @@ function getHargaBarang(){
 }
 
 function getShippingCost(harga){
-  $("#ongkos-kirim").text(harga);
+  if (harga == 0) {
+      $("#ongkos-kirim").text("Sorry JNE can't reach your city yet");
+  } else {
+      $("#ongkos-kirim").text(harga);
+  }
 }
 
 //Fungsi untuk tampilkan data pada select di form
@@ -93,4 +77,40 @@ function hi(province){
   $(".my-select-province").select2({
     "data" : province
   });
+}
+function updatePrice(){
+  shipping_cost = $("#ongkos-kirim").text();
+  product_price = getHargaBarang();
+  shipping_cost = parseInt(shipping_cost);
+  product_price = parseInt(product_price);
+  promo = $("#promo-icon").text()
+  if (promo != "") {
+    console.log("masuk sini(1)");
+    if (promo.length > 15) {
+      console.log("masuk sini(2)");
+      promo_amount = $("#promo-amount").text();
+      console.log(promo_amount);
+      promo_amount = parseInt(promo_amount);
+      console.log(promo_amount);
+      promo_amount = getDiscount(promo_amount);
+      console.log(promo_amount);
+      total = product_price + shipping_cost - promo_amount;
+      console.log(total);
+    }
+  } else {
+    total = product_price + shipping_cost;
+  }
+  $("#harga-barang").text(product_price);
+  $("#total-harga").text(total);
+  return total;
+}
+
+function getDiscount(amount){
+  shipping_cost = $("#ongkos-kirim").text();
+  product_price = getHargaBarang();
+  shipping_cost = parseInt(shipping_cost);
+  product_price = parseInt(product_price);
+  current_total = product_price + shipping_cost;
+  discount = ((amount / 100) * current_total);
+  return discount;
 }
