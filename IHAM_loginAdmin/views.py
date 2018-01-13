@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 response = {}
 def show_login(request):
-	return render(request, 'regsitration/login.html', response)
+	return render(request, 'registration/login.html', response)
 
 @login_required
 def logged_in(request):
