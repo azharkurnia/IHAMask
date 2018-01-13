@@ -35,16 +35,18 @@
 	<h3 style="text-align: center">Promo yang ada</h3>
 <br><br>
 <div class="row">
-    <div class="col-md-6 col-xs-6">
+    <div class="col-md-12 col-xs-12">
         <table align="center" style="text-align: center">
             <tr>
                 <th>Promo code</th>
                 <th>Promo amount</th>
+                <th></th>
             </tr>
             {% for promo in promoCodeList %}
                 <tr>
                     <td class="codeTable">{{ promo.promoCode }}</td>
                     <td class="amountTable">{{ promo.promoAmount }}%</td>
+                    <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger">X</button></td>
                 </tr>
             {% endfor %}
         </table>
