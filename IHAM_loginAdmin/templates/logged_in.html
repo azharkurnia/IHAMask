@@ -46,11 +46,19 @@
                 <tr>
                     <td class="codeTable">{{ promo.promoCode }}</td>
                     <td class="amountTable">{{ promo.promoAmount }}%</td>
-                    <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger">X</button></td>
+                    <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" onclick="deleteCode({{ promo.pk }})">X</button></td>
                 </tr>
             {% endfor %}
         </table>
     </div>
 </div>
 </body>
+<script>
+    var deleteCode = function(id){
+        $.ajax({
+            method: "GET",
+            url: "/login/delete_code/" + id + "/",
+    });
+    }
+</script>
 </html>

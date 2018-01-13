@@ -26,3 +26,8 @@ def add_promo_code(request):
 		return HttpResponseRedirect('/login/adminIHA/')
 	else:
 		return HttpResponseRedirect('/login/adminIHA/')
+
+@login_required
+def delete_code(request, current_code):
+    PromoCode.objects.filter(id=current_code).delete()
+    #return HttpResponseRedirect('/login/adminIHA/')
