@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^adminIHA/', logged_in, name = 'logged_in'),
     url(r'^add_promo_code/', add_promo_code, name = 'add_promo_code'),
-    url(r'^delete_code/(?P<current_code>[0-9]+)', delete_code, name='delete_code'),
+    url(r'^delete_code/(?P<code_id>[0-9]+)/$', delete_code, name='delete_code'),
 ]

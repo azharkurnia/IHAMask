@@ -54,12 +54,11 @@
 </div>
 </body>
 <script>
-    var deleteCode = function(id){
-        $.ajax({
-            method: "GET",
-            url: "/login/delete_code/" + id + "/",
-    });
-    }
+    var deleteCode = function(pk){
+          console.log(pk);
+          window.open("delete_code/"+pk+"/", '_self');
+        }
+
     // function deleteCode(id){
     //         window.open('deleteCode/'+id+'/', '_self');
     //     }
