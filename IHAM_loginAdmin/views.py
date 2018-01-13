@@ -30,4 +30,4 @@ def add_promo_code(request):
 @login_required
 def delete_code(request, current_code):
     PromoCode.objects.filter(id=current_code).delete()
-    #return HttpResponseRedirect('/login/adminIHA/')
+    return HttpResponseRedirect('/login/adminIHA/')
