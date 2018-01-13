@@ -11,6 +11,29 @@
 </head>
 
 <body>
+<br><br>
+<h3 style="text-align: center">Pesanan</h3>
+<br><br>
+<div class="row">
+    <div class="col-md-12 col-xs-12">
+        <table align="center" style="text-align: center">
+            <tr>
+                <th>Name</th>
+                <th>Email address</th>
+                <th>Phone number</th>
+                <th>Product A</th>
+                <th>Product B</th>
+                <th>Phone number</th>
+                <th>Street</th>
+                <th>District/city</th>
+                <th>Phone number</th>
+                <th>Postal code</th>
+                <th>Promotion code</th>
+
+            </tr>
+        </table>
+    </div>
+</div>
 	<section name="form promo">
 		<form method="POST" action="{% url 'IHAM_loginAdmin:add_promo_code' %}">
 			{% csrf_token %}
@@ -32,6 +55,7 @@
               <button type="submit" class="btn d-flex" id='submit-button'>Add promo code</button>
 		</form>
 	</section>
+    <br><br>
 	<h3 style="text-align: center">Promo yang ada</h3>
 <br><br>
 <div class="row">
@@ -52,6 +76,9 @@
         </table>
     </div>
 </div>
+
+
+
 </body>
 <script>
     var deleteCode = function(pk){
