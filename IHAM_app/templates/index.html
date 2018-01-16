@@ -265,12 +265,14 @@
 				</h2> <!-- /.section-title -->
 				<div class="underline purple"></div>
 				<div id="accordion">
+				{% if faq %}
 				{% for i in faq %}
 				  <h3><strong>{{ i.titleEng}}</strong><br>{{i.titleIndo}}</h3>
 				  <div>
 				    <p><strong>{{ i.isiEng}}</strong><br>{{i.isiIndo}}</p>
 				  </div>
 				  {% endfor %}
+				  {% endif %}
 				</div>
 				<div class="underline purple"></div>
 		</div> <!-- /.container -->
@@ -284,6 +286,7 @@
 			</div> <!-- /.section-title -->
 			<div class="underline white"></div>
 			<div class="owl-carousel testimonial-owl">
+				{% if events %}
 				{% for i in events %}
 				<div class="item">
 					<div class="test-name">
@@ -296,6 +299,7 @@
 					</p>
 				</div> <!-- /.item -->
 				{% endfor %}
+				{% endif %}
 			</div> <!-- /.owl-carousel -->
 		</div> <!-- /.container -->
 	</section> <!-- /.testimonial -->
