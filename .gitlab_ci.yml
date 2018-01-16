@@ -1,5 +1,16 @@
 stages:
+  - test
   - deploy
+
+Test:
+  image: python:3.6
+  stage: test
+  before_script:
+    - pip install -r requirements.txt
+    - python manage.py makemigrations
+    - python manage.py migrate
+  when: on_success
+  script:
 
 Deployment:
   image: ruby:2.4
