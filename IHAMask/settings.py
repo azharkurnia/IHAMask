@@ -25,7 +25,7 @@ SECRET_KEY = 'tg2br0gi(3zknt12o^s&cok$d)rzwz%^yi^3(d55g3vey5lp5^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ihamaskproduction.herokuapp.com']
 
 
 # Application definition
