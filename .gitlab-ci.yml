@@ -20,6 +20,7 @@ UnitTest:
     - python manage.py runserver 8000 &
   when: on_success
   script:
+    - python manage.py test
 
 Deployment:
   image: ruby:2.4
