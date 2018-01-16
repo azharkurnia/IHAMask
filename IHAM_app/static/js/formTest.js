@@ -59,7 +59,7 @@ function getValueB(){
 
 // Fungsi untuk get total harga parang
 function getHargaBarang(){
-  var hargaProductA = 5000;
+  var hargaProductA = 89000;
   var hargaProductB = 7000;
   return ((getValueA() * hargaProductA) + (getValueB() * hargaProductB));
 }

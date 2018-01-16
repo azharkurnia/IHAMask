@@ -23,7 +23,7 @@ from django.views.generic import RedirectView
 from IHAM_app.views import index
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^forum/', include(IHAM_app, namespace='IHAM_app')),
+    url(r'^form/', include(IHAM_app, namespace='IHAM_app')),
     url(r'^$',index, name='index'),
     url(r'^login/', include(IHAM_loginAdmin, namespace='IHAM_loginAdmin')),
 ]
