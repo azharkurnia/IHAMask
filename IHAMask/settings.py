@@ -25,7 +25,7 @@ SECRET_KEY = 'tg2br0gi(3zknt12o^s&cok$d)rzwz%^yi^3(d55g3vey5lp5^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ihamaskproduction.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -120,6 +120,10 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+
 
 # Login redirect
 LOGIN_REDIRECT_URL = '/login/adminIHA/'
