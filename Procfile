@@ -1,1 +1,1 @@
-web: gunicorn praktikum.wsgi --log-file -
+web: gunicorn IHAMask.wsgi --log-file -
