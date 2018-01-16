@@ -1,15 +1,6 @@
 stages:
   - deploy
-
-Deployment:python:
-  image: python:3.6
-  stage: deploy
-  script:
-    - pip install -r requirements.txt
-    - python manage.py makemigrations
-    - python manage.py migrate
-    - python manage.py collectstatic --noinput
-
+  
 Deployment:ruby:
   image: ruby:2.4
   stage: deploy
