@@ -29,9 +29,11 @@ def add_order_data_to_models(request):
         productQuantityA = int(productQuantityA)
         productQuantityB = int(productQuantityB)
         street = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
-        # province
-        # city
-        # customerAddress
+
+       # province = 
+        city = request.POST('kota')# if request.POST.get('nama_kots') != "" else "Anonymous"
+
+        customerAddress = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
         productPriceA = productQuantityA * 5000
         productPriceB = productQuantityB * 7000
         productPriceA = int(productPriceA)
@@ -41,10 +43,12 @@ def add_order_data_to_models(request):
         print("productQuantityA " + str(productQuantityA))
         print("productQuantityB " + str(productQuantityB))
         print("street " + str(street))
-        print("province " + str(province))
+        print("city " + str(city))
         print("productPriceA " + str(productPriceA))
         print("productPriceB " + str(productPriceB))
         print("totalProductPrice " + str(totalProductPrice))
+        print("productQuantityA " + str(productQuantityA))
+
 
 # method untuk mendapatkan semua kota atau kabupaten
 def get_city(request):

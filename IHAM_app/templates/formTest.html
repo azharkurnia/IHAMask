@@ -23,7 +23,7 @@
           <div class="col-md-12">
             <h1>Order</h1>
             <p>Text apa kek co</p>
-            <form method="POST" action="{% url 'IHAM_app:add_data' %}">
+            <form id="form" method="POST" action="{% url 'IHAM_app:add_data' %}">
               {% csrf_token %}
               <div class="col-md-6" style="padding-left: 0;">
                 <div class="form-group">
@@ -135,6 +135,9 @@
 <!-- JS -->
 <script src="{% static 'js/formTest.js' %}"></script>
 <script>
+  var listCity;
+  var i = 1;
+  var city;
   var kotaDipilih;
   var updateAddress = function(){
     var street = $("#street").val();
@@ -165,8 +168,25 @@
   }
 
   $(document).ready(function(){
-    var listCity;
-    var i = 1;
+
+
+    var form = $('#form');
+    $(form).submit(function(event) {
+    // Stop the browser from submitting the form.
+    event.preventDefault();
+
+    // TODO
+    // Serialize the form data.
+    var formData = $(form).serialize();
+
+    // Submit the form using AJAX.
+    $.ajax({
+    type: 'POST',
+    url: $(form).attr('action'),
+    data: {data : formData, kota : city},
+  })  
+  });
+
     // Ajax untuk mendapat data provinsi dan ditampilkan dalam select province
     $.ajax({
         method: "GET",
@@ -198,6 +218,7 @@
           break;
         }
       }
+
       console.log(kotaDipilih);
       updateAddress();
       $.ajax({
@@ -205,6 +226,8 @@
         url: "/forum/get_price/" + (index+1) + "/",
         success : function(data) {
           console.log(data);
+          var nama_kota = data['rajaongkir']['destination_details']['city_name'];
+          console.log(nama_kota);
           if ((data['rajaongkir']['results'][0]['costs']).length > 0) {
             try {
                 var shipping_cost = data['rajaongkir']['results'][0]['costs'][1]['cost'][0]['value'];

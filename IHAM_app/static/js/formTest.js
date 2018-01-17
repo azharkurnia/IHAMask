@@ -8,6 +8,24 @@ window.addEventListener( "pageshow", function ( event ) {
 });
 
 $(document).ready(function(){
+  var form = $('#form');
+  $(form).submit(function(event) {
+    // Stop the browser from submitting the form.
+    event.preventDefault();
+
+    // TODO
+    // Serialize the form data.
+    var formData = $(form).serialize();
+
+    // Submit the form using AJAX.
+    $.ajax({
+    type: 'POST',
+    url: $(form).attr('action'),
+    data: {data : formData, kota : city}
+  })  
+  });
+
+
   // Memastikan value kuantitas nol di awal
   var shipping_cost;
   $("#quantity-productA").val("");
@@ -37,6 +55,8 @@ $(document).ready(function(){
   $("#quantity-productB").keyup(function(){
     updatePrice();
   });
+
+
 });
 
 // Fungsi untuk get kuantitas
