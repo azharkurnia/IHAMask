@@ -150,7 +150,7 @@
     var current_code = $("#promotion-code").val();
     $.ajax({
       method: "GET",
-      url: "/forum/check_code/" + current_code + "/",
+      url: "/form/check_code/" + current_code + "/",
       success : function(data){
         if ((typeof data) == "object") {
           promoAmount = data['promoAmount'];
@@ -201,7 +201,7 @@
       updateAddress();
       $.ajax({
         method: "GET",
-        url: "/forum/get_price/" + (index+1) + "/",
+        url: "/form/get_price/" + (index+1) + "/",
         success : function(data) {
           console.log(data);
           if ((data['rajaongkir']['results'][0]['costs']).length > 0) {
