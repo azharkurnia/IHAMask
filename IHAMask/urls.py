@@ -20,10 +20,10 @@ import IHAM_app.urls as IHAM_app
 import IHAM_loginAdmin.urls as IHAM_loginAdmin
 
 from django.views.generic import RedirectView
-
+from IHAM_app.views import index
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^forum/', include(IHAM_app, namespace='IHAM_app')),
-    url(r'^$', RedirectView.as_view(url='forum/', permanent = True), name = '$'),
+    url(r'^form/', include(IHAM_app, namespace='IHAM_app')),
+    url(r'^$',index, name='index'),
     url(r'^login/', include(IHAM_loginAdmin, namespace='IHAM_loginAdmin')),
 ]

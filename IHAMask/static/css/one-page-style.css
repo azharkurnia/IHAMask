@@ -1,0 +1,19 @@
+.one-page-nav{
+	padding: 10px 0px;
+	background: #eaeaea;
+}
+.one-page-nav .navbar-nav>.active>a, .one-page-nav .navbar-nav>.active>a:focus, .one-page-nav .navbar-nav>.active>a:hover{
+    background-color: transparent;
+	color: #fff;
+}.one-page-nav .navbar-nav>li>a{
+	color: #313131;
+}
+.one-page-nav .navbar-nav>li>a:hover{
+	color: #fff;
+}
+.one-page-nav .navbar-nav>li>a:focus, .one-page-nav .navbar-nav>li>a:hover{
+	color: #fff;
+}
+.one-page-nav .navbar-brand{
+	color: #313131;
+}

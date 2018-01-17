@@ -1,0 +1,1 @@
+web: gunicorn IHAMask.wsgi --log-file -
