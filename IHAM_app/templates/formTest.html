@@ -154,7 +154,7 @@
     var current_code = $("#promotion-code").val();
     $.ajax({
       method: "GET",
-      url: "/forum/check_code/" + current_code + "/",
+      url: "/form/check_code/" + current_code + "/",
       success : function(data){
         if ((typeof data) == "object") {
           promoAmount = data['promoAmount'];
@@ -178,6 +178,7 @@
     // TODO
     // Serialize the form data.
     var formData = $(form).serialize();
+    console.log(formData);
 
     // Submit the form using AJAX.
     $.ajax({
@@ -223,7 +224,7 @@
       updateAddress();
       $.ajax({
         method: "GET",
-        url: "/forum/get_price/" + (index+1) + "/",
+        url: "/form/get_price/" + (index+1) + "/",
         success : function(data) {
           console.log(data);
           var nama_kota = data['rajaongkir']['destination_details']['city_name'];
