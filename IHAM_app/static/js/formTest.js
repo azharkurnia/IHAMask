@@ -88,7 +88,8 @@ function updatePrice(){
   product_price = getHargaBarang();
   shipping_cost = parseInt(shipping_cost);
   product_price = parseInt(product_price);
-  promo = $("#promo-icon").text()
+  promo = $("#promo-icon").text();
+  total = 0;
   if (promo != "") {
     console.log("masuk sini(1)");
     if (promo.length > 15) {
