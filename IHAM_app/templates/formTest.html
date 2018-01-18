@@ -97,7 +97,7 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <p>Ship To<span id="order-address"></span></p>
+                  <p>Ship To <span id="order-address"></span></p>
                   <p>Shipping Price: Rp <span id="ongkos-kirim">0</span></p>
                   <div class="form-group">
                     <label class="form-control-label">Promotion Code</label>
@@ -136,6 +136,7 @@
   var i = 1;
   var city;
   var kotaDipilih;
+  var kotaUntukDataBase;
   var updateAddress = function(){
     var street = $("#street").val();
     try {
@@ -173,15 +174,22 @@
     event.preventDefault();
 
     // TODO
-    // Serialize the form data.
-    var formData = $(form).serialize();
-    console.log(formData);
+    // Serialize the form data.]
+    var nama = $("#InputName").val().toString();
+    var email = $("#InputEmail").val().toString();
+    var nomor_hp = $("#phone-number").val().toString();
+    var productA = $("#quantity-productA").val().toString();
+    var productB = $("#quantity-productB").val().toString();
+    var alamat = $("#street").val().toString();
+    var kodepos = $("#postal").val().toString();
+    var kota = kotaUntukDataBase.toString();
 
     // Submit the form using AJAX.
     $.ajax({
     type: 'POST',
     url: $(form).attr('action'),
-    data: {data : formData, kota : city},
+    data: {name : nama, email : email, phone : nomor_hp, productQuantityA : productA, productQuantityB : productB, street : alamat,kota : kota},
+
   })  
   });
 
@@ -226,6 +234,7 @@
         success : function(data) {
           console.log(data);
           var nama_kota = data['rajaongkir']['destination_details']['city_name'];
+          kotaUntukDataBase = nama_kota;
           console.log(nama_kota);
           if ((data['rajaongkir']['results'][0]['costs']).length > 0) {
             try {

@@ -1,8 +1,8 @@
 from django.shortcuts import render
 import http.client
 import json
-from django.http import HttpResponse, JsonResponse
-from .models import upcomingEvents, FAQ
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from .models import upcomingEvents, FAQ, OrderList
 from IHAM_loginAdmin.models import PromoCode
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
@@ -23,21 +23,17 @@ def index(request):
 @csrf_exempt
 def add_order_data_to_models(request):
     if(request.method == 'POST'):
-        customerName = request.POST['data']#,'test')# if request.POST['name'] != "" else "Anonymous"
-        print("customerName " + (customerName))
+        customerName = request.POST['name'] if request.POST['name'] != "" else "Anonymous"
         customerEmail = request.POST['email'] if request.POST['email'] != "" else "Anonymous"
         customerPhone = request.POST['phone'] if request.POST['phone'] != "" else "Anonymous"
         productQuantityA = request.POST['productQuantityA'] if request.POST['productQuantityA'] != "" else 0
         productQuantityB = request.POST['productQuantityB'] if request.POST['productQuantityB'] != "" else 0
         productQuantityA = int(productQuantityA)
         productQuantityB = int(productQuantityB)
-        street = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
+        customerAdress = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
+        city = request.POST['kota'] if request.POST['kota'] != "" else "Anonymous"
 
-       # province = 
-        city = request.POST('kota')# if request.POST.get('nama_kots') != "" else "Anonymous"
-
-        customerAddress = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
-        productPriceA = productQuantityA * 5000
+        productPriceA = productQuantityA * 89000
         productPriceB = productQuantityB * 7000
         productPriceA = int(productPriceA)
         productPriceB = int(productPriceB)
@@ -51,6 +47,13 @@ def add_order_data_to_models(request):
         print("productPriceB " + str(productPriceB))
         print("totalProductPrice " + str(totalProductPrice))
         print("productQuantityA " + str(productQuantityA))
+
+        OrderList(customerName = customerName, customerEmail = customerEmail, customerPhone = customerPhone, productQuantityA=productQuantityA,
+            productQuantityB = productQuantityB, customerAdress = customerAdress,totalPrice = totalPrice,promoCode = promoCode )
+        OrderList.save()
+        return HttpResponseRedirect('')
+
+
 
 
 # method untuk mendapatkan semua kota atau kabupaten
@@ -84,7 +87,7 @@ def get_price(request, destination):
 
     res = conn.getresponse()
     data = res.read()
-    cost_Data = json.loads(data.decode("utf-8"))
+    cost_Data = json.loads(data)
     print(data.decode("utf-8"))
     return JsonResponse(cost_Data)
 

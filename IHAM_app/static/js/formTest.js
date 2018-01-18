@@ -105,7 +105,7 @@ function updatePrice(){
   } else {
     total = product_price + shipping_cost;
   }
-  $("#harga-barang").text(product_price);
+  $("#harga-barang").text(product_price - promo_amount);
   $("#total-harga").text(total);
   return total;
 }
@@ -115,7 +115,6 @@ function getDiscount(amount){
   product_price = getHargaBarang();
   shipping_cost = parseInt(shipping_cost);
   product_price = parseInt(product_price);
-  current_total = product_price + shipping_cost;
-  discount = ((amount / 100) * current_total);
+  discount = ((amount / 100) * product_price);
   return discount;
 }
