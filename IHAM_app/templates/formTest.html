@@ -30,7 +30,6 @@
               {% csrf_token %}
               <div class="col-md-6" style="padding-left: 0;">
                 <div class="form-group">
-                  <label for="InputName">Your name</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-address-card-o"></i>
@@ -39,7 +38,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="InputEmail">Email address</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-at"></i>
@@ -48,7 +46,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="form-control-label">Phone Number</label>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-mobile-phone"></i>
@@ -86,24 +83,21 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="form-control-label">Street</label>
                     <input type="text" class="form-control w-100" required="required" name="street" onkeyup="updateAddress()" id="street" placeholder="Enter your address">
                   </div>
                   <div class="form-group">
-                    <label class="form-control-label">District/City</label>
                     <select class="form-control my-select-city" name="city" style="width: 100%;">
                       <option value=""></option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label class="form-control-label">Postal Code</label>
                     <input type="text" class="form-control w-100" required pattern="[0-9]{5}" name="postal" onkeyup="updateAddress()" id="postal" placeholder="Enter your postal code" title="Postal code consist of 5 number">
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <p>Order Address: <span id="order-address"></span></p>
+                  <p>Ship To<span id="order-address"></span></p>
                   <p>Shipping Price: Rp <span id="ongkos-kirim">0</span></p>
                   <div class="form-group">
                     <label class="form-control-label">Promotion Code</label>

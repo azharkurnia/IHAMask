@@ -84,7 +84,7 @@ def get_price(request, destination):
 
     res = conn.getresponse()
     data = res.read()
-    cost_Data = json.loads(data)
+    cost_Data = json.loads(data.decode("utf-8"))
     print(data.decode("utf-8"))
     return JsonResponse(cost_Data)
 
