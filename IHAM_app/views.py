@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from .models import upcomingEvents, FAQ
 from IHAM_loginAdmin.models import PromoCode
 from django.core import serializers
+from django.views.decorators.csrf import csrf_exempt
 import ast
 
 # Create your views here.
@@ -19,9 +20,11 @@ def index(request):
     return render(request, 'index.html', response)
 
 # Method untuk get data dari form order lalu masukkan ke models
+@csrf_exempt
 def add_order_data_to_models(request):
     if(request.method == 'POST'):
-        customerName = request.POST['name'] if request.POST['name'] != "" else "Anonymous"
+        customerName = request.POST['data']#,'test')# if request.POST['name'] != "" else "Anonymous"
+        print("customerName " + (customerName))
         customerEmail = request.POST['email'] if request.POST['email'] != "" else "Anonymous"
         customerPhone = request.POST['phone'] if request.POST['phone'] != "" else "Anonymous"
         productQuantityA = request.POST['productQuantityA'] if request.POST['productQuantityA'] != "" else 0
