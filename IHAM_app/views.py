@@ -30,7 +30,7 @@ def add_order_data_to_models(request):
         productQuantityB = request.POST['productQuantityB'] if request.POST['productQuantityB'] != "" else 0
         productQuantityA = int(productQuantityA)
         productQuantityB = int(productQuantityB)
-        customerAdress = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
+        customerAddress = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
         city = request.POST['kota'] if request.POST['kota'] != "" else "Anonymous"
 
         productPriceA = productQuantityA * 89000
@@ -41,16 +41,18 @@ def add_order_data_to_models(request):
         # totalPrice
         print("productQuantityA " + str(productQuantityA))
         print("productQuantityB " + str(productQuantityB))
-        print("street " + str(street))
+        print("street " + str(customerAddress))
         print("city " + str(city))
         print("productPriceA " + str(productPriceA))
         print("productPriceB " + str(productPriceB))
         print("totalProductPrice " + str(totalProductPrice))
         print("productQuantityA " + str(productQuantityA))
 
-        OrderList(customerName = customerName, customerEmail = customerEmail, customerPhone = customerPhone, productQuantityA=productQuantityA,
-            productQuantityB = productQuantityB, customerAdress = customerAdress,totalPrice = totalPrice,promoCode = promoCode )
-        OrderList.save()
+        order = OrderList(customerName = customerName, customerEmail = customerEmail, customerPhone = customerPhone, productQuantityA=productQuantityA,
+            productQuantityB = productQuantityB, customerAddress = customerAddress, productPrice = totalProductPrice, shippingPrice = 0, totalPrice = 0, promoCode = "0")
+        order.save()
+        cek = OrderList.objects.get(customerName = customerName)
+        print(cek)
         return HttpResponseRedirect('')
 
 

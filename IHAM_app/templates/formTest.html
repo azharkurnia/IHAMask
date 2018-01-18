@@ -156,7 +156,7 @@
       success : function(data){
         if ((typeof data) == "object") {
           promoAmount = data['promoAmount'];
-          $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount <span id='promo-amount'>" + promoAmount + "</span> % of total price</p>")
+          $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount <span id='promo-amount'>" + promoAmount + "</span> % of product price</p>")
         } else {
           $("#promo-icon").html("<p>&#10006;</p>")
         }
@@ -170,28 +170,27 @@
 
     var form = $('#form');
     $(form).submit(function(event) {
-    // Stop the browser from submitting the form.
-    event.preventDefault();
+      // Stop the browser from submitting the form.
+      event.preventDefault();
 
-    // TODO
-    // Serialize the form data.]
-    var nama = $("#InputName").val().toString();
-    var email = $("#InputEmail").val().toString();
-    var nomor_hp = $("#phone-number").val().toString();
-    var productA = $("#quantity-productA").val().toString();
-    var productB = $("#quantity-productB").val().toString();
-    var alamat = $("#street").val().toString();
-    var kodepos = $("#postal").val().toString();
-    var kota = kotaUntukDataBase.toString();
+      // TODO
+      // Serialize the form data.]
+      var nama = $("#InputName").val().toString();
+      var email = $("#InputEmail").val().toString();
+      var nomor_hp = $("#phone-number").val().toString();
+      var productA = $("#quantity-productA").val().toString();
+      var productB = $("#quantity-productB").val().toString();
+      var alamat = $("#street").val().toString();
+      var kodepos = $("#postal").val().toString();
+      var kota = kotaUntukDataBase.toString();
 
-    // Submit the form using AJAX.
-    $.ajax({
-    type: 'POST',
-    url: $(form).attr('action'),
-    data: {name : nama, email : email, phone : nomor_hp, productQuantityA : productA, productQuantityB : productB, street : alamat,kota : kota},
-
-  })  
-  });
+      // Submit the form using AJAX.
+      $.ajax({
+      type: 'POST',
+      url: $(form).attr('action'),
+      data: {name : nama, email : email, phone : nomor_hp, productQuantityA : productA, productQuantityB : productB, street : alamat,kota : kota},
+      })
+    });
 
     // Ajax untuk mendapat data provinsi dan ditampilkan dalam select province
     $.ajax({
@@ -250,10 +249,10 @@
           updatePrice();
 
         }
-      }) 
+      })
     });
 
-    
+
 
     // Menampilkan halaman HTML [HARUS SELALU DIAKHIR DOCUMENT READY]
     $("body").css("display", "inherit");
