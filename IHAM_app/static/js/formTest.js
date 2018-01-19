@@ -88,7 +88,9 @@ function updatePrice(){
   product_price = getHargaBarang();
   shipping_cost = parseInt(shipping_cost);
   product_price = parseInt(product_price);
-  promo = $("#promo-icon").text()
+  promo = $("#promo-icon").text();
+  total = 0;
+  promo_amount = 0;
   if (promo != "") {
     console.log("masuk sini(1)");
     if (promo.length > 30) {
@@ -101,6 +103,8 @@ function updatePrice(){
       console.log(promo_amount);
       total = product_price + shipping_cost - promo_amount;
       console.log(total);
+    } else {
+      total = product_price + shipping_cost;
     }
     else {
       total = product_price + shipping_cost;
@@ -108,6 +112,7 @@ function updatePrice(){
   } else {
     total = product_price + shipping_cost;
   }
+  product_price = product_price - promo_amount
   $("#harga-barang").text(product_price);
   $("#total-harga").text(total);
   return total;
@@ -118,7 +123,6 @@ function getDiscount(amount){
   product_price = getHargaBarang();
   shipping_cost = parseInt(shipping_cost);
   product_price = parseInt(product_price);
-  current_total = product_price + shipping_cost;
-  discount = ((amount / 100) * current_total);
+  discount = ((amount / 100) * product_price);
   return discount;
 }

@@ -85,7 +85,7 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <p>Ship To<span id="order-address"></span></p>
+                  <p>Ship To <span id="order-address"></span></p>
                   <p>Shipping Price: Rp <span id="ongkos-kirim">0</span></p>
                   <div class="form-group">
                     <div class="row">
@@ -123,6 +123,7 @@
   var i = 1;
   var city;
   var kotaDipilih;
+  var kotaUntukDataBase;
   var updateAddress = function(){
     var street = $("#street").val();
     try {
@@ -144,12 +145,17 @@
       success : function(data){
         if ((typeof data) == "object") {
           promoAmount = data['promoAmount'];
+<<<<<<< HEAD
           $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount <span id='promo-amount'>" + promoAmount + "</span> % of total price</p>")
         } 
         else if (data === "email"){
           $("#promo-icon").html("<p>Promo Code Used &#10006;</p>")
         }
           else {
+=======
+          $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount <span id='promo-amount'>" + promoAmount + "</span> % of product price</p>")
+        } else {
+>>>>>>> e3a260c4b84fa598b0fae35fcb37fa542f40b661
           $("#promo-icon").html("<p>&#10006;</p>")
         }
         updatePrice();
@@ -162,21 +168,27 @@
 
     var form = $('#form');
     $(form).submit(function(event) {
-    // Stop the browser from submitting the form.
-    event.preventDefault();
+      // Stop the browser from submitting the form.
+      event.preventDefault();
 
-    // TODO
-    // Serialize the form data.
-    var formData = $(form).serialize();
-    console.log(formData);
+      // TODO
+      // Serialize the form data.]
+      var nama = $("#InputName").val().toString();
+      var email = $("#InputEmail").val().toString();
+      var nomor_hp = $("#phone-number").val().toString();
+      var productA = $("#quantity-productA").val().toString();
+      var productB = $("#quantity-productB").val().toString();
+      var alamat = $("#street").val().toString();
+      var kodepos = $("#postal").val().toString();
+      var kota = kotaUntukDataBase.toString();
 
-    // Submit the form using AJAX.
-    $.ajax({
-    type: 'POST',
-    url: $(form).attr('action'),
-    data: {data : formData, kota : city},
-  })  
-  });
+      // Submit the form using AJAX.
+      $.ajax({
+      type: 'POST',
+      url: $(form).attr('action'),
+      data: {name : nama, email : email, phone : nomor_hp, productQuantityA : productA, productQuantityB : productB, street : alamat,kota : kota},
+      })
+    });
 
     // Ajax untuk mendapat data provinsi dan ditampilkan dalam select province
     $.ajax({
@@ -219,6 +231,7 @@
         success : function(data) {
           console.log(data);
           var nama_kota = data['rajaongkir']['destination_details']['city_name'];
+          kotaUntukDataBase = nama_kota;
           console.log(nama_kota);
           if ((data['rajaongkir']['results'][0]['costs']).length > 0) {
             try {
@@ -234,10 +247,10 @@
           updatePrice();
 
         }
-      }) 
+      })
     });
 
-    
+
 
     // Menampilkan halaman HTML [HARUS SELALU DIAKHIR DOCUMENT READY]
     $("body").css("display", "inherit");
