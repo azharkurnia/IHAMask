@@ -7,5 +7,5 @@ urlpatterns = [
     url(r'^get_city/', get_city, name='get_city'),
     url(r'^get_price/(?P<destination>.*)/', get_price, name='get_price'),
     url(r'^index/', index, name='index'),
-    url(r'^check_code/(?P<current_code>.*)/', check_code, name='check_code'),
+    url(r'^check_code/', check_code, name='check_code'),
 ]

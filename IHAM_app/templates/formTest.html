@@ -20,36 +20,26 @@
 <body style="display: none">
   <!-- <div data-theme="light" id="rajaongkir-widget"></div> -->
   <section name="form">
-    <div class="py-5 bg-primary text-white">
+    <div>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <h1>Order</h1>
-            <p>Text apa kek co</p>
             <form id="form" method="POST" action="{% url 'IHAM_app:add_data' %}">
               {% csrf_token %}
               <div class="col-md-6" style="padding-left: 0;">
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-address-card-o"></i>
-                    </div>
                     <input type="text" class="form-control" id="InputName" placeholder="Your name" required pattern="[A-Za-z ]+" title="Name must be alphabet" name="name">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-at"></i>
-                    </div>
                     <input type="email" class="form-control" id="InputEmail" placeholder="Enter email" required="required" name="email">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <div class="input-group-addon">
-                      <i class="fa fa-mobile-phone"></i>
-                    </div>
                     <input type="text" class="form-control" placeholder="Enter phone number" required pattern="[0-9]{10,12}" id="phone-number" title="Input must be 10-12 'number'" name="phone">
                   </div>
                 </div>
@@ -58,10 +48,8 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-check">
-                    <label class="form-check-label">
-                      <input class="form-check-input" type="checkbox" id="checkboxA"> TEA TREE ORGANIC PAINLESS PEEL OFF MASK (Rp 89000)
-                    </label>
-                    <input type="text" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productA" style="display: none" pattern="[0-9]+" name="productQuantityA">
+                    <p><Strong>Tea Tree Organic</Strong> Painless Peel Off Mask <span class="badge badge-secondary">IDR 89000</span></p>
+                    <input type="text" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productA" pattern="[0-9]+" name="productQuantityA">
                   </div>
                 </div>
                 <div class="col-md-3" style="display: none">
@@ -100,7 +88,6 @@
                   <p>Ship To<span id="order-address"></span></p>
                   <p>Shipping Price: Rp <span id="ongkos-kirim">0</span></p>
                   <div class="form-group">
-                    <label class="form-control-label">Promotion Code</label>
                     <div class="row">
                       <div class="col-md-6">
                         <input type="text" class="form-control w-100" name="promotion-code" id="promotion-code" placeholder="Input if you have promotion code" onkeyup="check_promo()">
@@ -149,14 +136,20 @@
   }
   var check_promo = function(){
     var current_code = $("#promotion-code").val();
+    var email = $("#InputEmail").val();
     $.ajax({
-      method: "GET",
-      url: "/form/check_code/" + current_code + "/",
+      method: "POST",
+      url: "/form/check_code/",
+    data: {code : current_code, email_check : email},
       success : function(data){
         if ((typeof data) == "object") {
           promoAmount = data['promoAmount'];
           $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount <span id='promo-amount'>" + promoAmount + "</span> % of total price</p>")
-        } else {
+        } 
+        else if (data === "email"){
+          $("#promo-icon").html("<p>Promo Code Used &#10006;</p>")
+        }
+          else {
           $("#promo-icon").html("<p>&#10006;</p>")
         }
         updatePrice();

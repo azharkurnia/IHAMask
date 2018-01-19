@@ -2,7 +2,7 @@ from django.shortcuts import render
 import http.client
 import json
 from django.http import HttpResponse, JsonResponse
-from .models import upcomingEvents, FAQ
+from .models import upcomingEvents, FAQ, OrderList
 from IHAM_loginAdmin.models import PromoCode
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
@@ -88,18 +88,24 @@ def get_price(request, destination):
     print(data.decode("utf-8"))
     return JsonResponse(cost_Data)
 
-def check_code(request, current_code):
+@csrf_exempt
+def check_code(request):
     # print(current_code)
-    try:
-        promo = PromoCode.objects.get(promoCode=current_code)
-        promo = model_to_dict(promo)
-        promo = ast.literal_eval(promo)
-        print(promo)
-        return JsonResponse(promo)
-    except PromoCode.DoesNotExist:
-        promo = None
-        print(promo)
-        return HttpResponse(promo)
+    if(request.method == 'POST'):
+        current_code = request.POST['code']
+        email = request.POST['email_check']
+        try:
+            promo = PromoCode.objects.get(promoCode=current_code)
+            promo = model_to_dict(promo)
+            promo = ast.literal_eval(promo)
+            # if OrderList.objects.filter(customerEmail=email_check).exists():
+            if email=="a@b.com":
+                return HttpResponse("email")
+            return JsonResponse(promo)
+        except PromoCode.DoesNotExist:
+            promo = None
+            print(promo)
+            return HttpResponse(promo)
 
 def model_to_dict(obj):
     data = serializers.serialize('json', [obj,])

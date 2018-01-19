@@ -308,8 +308,8 @@
 <section class="note grad" id="contact">
 <div class="container">
 			<h1>Reach Us</h1>
-			<div class="row">
-	            <div class="col-md-3 order-item col-sm-6 col-xs-12">
+			<div class="row align-items-center" style="align-items: center;">
+	            <div class="col-md-3 contact-item col-sm-6 col-xs-12">
 	                <i class="ion-location"></i>
 	                <h3>Address</h3>
 	                <p class="order">
@@ -329,8 +329,8 @@
 	                <i class="ion-printer"></i>
 	                <h3>Social Media</h3>
 	                <p class="order">
-	                    Instagram:<br>
-	                    Twitter:
+	                    Instagram: @IHAMask<br>
+	                    Facebook:
 	                </p>
 	            </div>
 	            <div class="col-md-3 order-item col-sm-6 col-xs-12">
@@ -351,9 +351,7 @@
 <!-- order-->
 	<section class="order section-wrapper" id="order">
 		<div class="container">
-			
-	        
-            </form> <!-- /.row -->
+
 		</div> <!-- /.container -->
 	</section> <!-- /.order -->
 
@@ -432,7 +430,7 @@
 		$(document).ready(function(){
 		$.ajax({
         method: "GET",
-        url: "https://www.instagram.com/ihamask/?__a=1",
+        url: "https://www.instagram.com/rafidamar98/?__a=1",
         success : function(data) {
         	for (var i = 0; i < data.user.media.nodes.length; i++) {
         	 	var content = $('<img src="'+data.user.media.nodes[i].display_src+'"class="add-item"  >')
@@ -446,7 +444,7 @@
 		$(document).ready(function(){
 		$.ajax({
         method: "GET",
-        url: "https://www.instagram.com/ihamask/?__a=1",
+        url: "https://www.instagram.com/rafidamar98/?__a=1",
         success : function(data) {
         	for (var i = 0; i < data.user.media.nodes.length; i++) {
         	 	var content = $('<img src="'+data.user.media.nodes[i].display_src+'"class="add-item"  >')

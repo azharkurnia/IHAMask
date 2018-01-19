@@ -91,7 +91,7 @@ function updatePrice(){
   promo = $("#promo-icon").text()
   if (promo != "") {
     console.log("masuk sini(1)");
-    if (promo.length > 15) {
+    if (promo.length > 30) {
       console.log("masuk sini(2)");
       promo_amount = $("#promo-amount").text();
       console.log(promo_amount);
@@ -101,6 +101,9 @@ function updatePrice(){
       console.log(promo_amount);
       total = product_price + shipping_cost - promo_amount;
       console.log(total);
+    }
+    else {
+      total = product_price + shipping_cost;
     }
   } else {
     total = product_price + shipping_cost;
