@@ -25,6 +25,14 @@ SECRET_KEY = 'tg2br0gi(3zknt12o^s&cok$d)rzwz%^yi^3(d55g3vey5lp5^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#####################################################
+#implementasiin lagi buat konfigurasi send email co #
+EMAIL_USE_TLS = True                                #
+EMAIL_HOST = 'smtp.gmail.com'                       #
+EMAIL_HOST_USER = 'test@gmail.com'                  #
+EMAIL_HOST_PASSWORD = 'test'                        #
+EMAIL_PORT = 587                                    #
+#####################################################
 ALLOWED_HOSTS = ['*']
 
 
