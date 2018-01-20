@@ -76,8 +76,8 @@ def add_order_data_to_models(request):
 
 #export data orderan to json
 def OrderListToJSON(request):
-    data = serializers.serialize("json", OrderList.objects.all())
-    return JsonResponse(data,safe=False)
+    data = OrderList.objects.all()
+    return HttpResponse(serializers.serialize('json', data), content_type="application/json")
 
 # method untuk mendapatkan semua kota atau kabupaten
 def get_city(request):
