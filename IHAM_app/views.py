@@ -74,6 +74,11 @@ def add_order_data_to_models(request):
         # email.send()
         return HttpResponse("Complete")
 
+#export data orderan to json
+def OrderListToJSON(request):
+    data = serializers.serialize("json", OrderList.objects.all())
+    return JsonResponse(data,safe=False)
+
 # method untuk mendapatkan semua kota atau kabupaten
 def get_city(request):
 
@@ -105,8 +110,8 @@ def get_price(request, destination):
 
     res = conn.getresponse()
     data = res.read()
+    data = data.decode("utf-8")
     cost_Data = json.loads(data)
-    print(data.decode("utf-8"))
     return JsonResponse(cost_Data)
 
 @csrf_exempt
