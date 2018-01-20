@@ -178,15 +178,19 @@
       var nomor_hp = $("#phone-number").val().toString();
       var productA = $("#quantity-productA").val().toString();
       var productB = $("#quantity-productB").val().toString();
-      var alamat = $("#street").val().toString();
+      var alamat = $("#order-address").val().toString();
       var kodepos = $("#postal").val().toString();
       var kota = kotaUntukDataBase.toString();
+      var kode_promo = $("#promotion-code").val().toString();
+      var harga_barang = $('#harga-barang').val().toString();
+      var harga_kurir = $("#ongkos-kirim").val().toString();
+      var total_harga = $("#total-harga").val().toString();
 
       // Submit the form using AJAX.
       $.ajax({
       type: 'POST',
       url: $(form).attr('action'),
-      data: {name : nama, email : email, phone : nomor_hp, productQuantityA : productA, productQuantityB : productB, street : alamat,kota : kota},
+      data: {name : nama, email : email, phone : nomor_hp, productQuantityA : productA, productQuantityB : productB, street : alamat,kota : kota,promoCode : kode_promo, prodcutPrice:harga_barang, shippingPrice = harga_kurir, totalPrice = total_harga},
       })
     });
 

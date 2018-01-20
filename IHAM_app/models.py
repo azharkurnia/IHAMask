@@ -10,7 +10,7 @@ class OrderList(models.Model):
     customerAddress = models.CharField(max_length=140, blank=False)
     productPrice = models.IntegerField() #Ini field baru zar
     shippingPrice = models.IntegerField() #Ini field baru zar
-    totalPrice = models.IntegerField(blank=False)
+    grandTotalPrice = models.IntegerField(blank=False)
     promoCode = models.CharField(max_length=140, blank=True)
     paidFlage = models.BooleanField(default=False) #Ini field baru zar
     deliveredFlage = models.BooleanField(default=False) #Ini field baru zar

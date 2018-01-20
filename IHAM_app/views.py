@@ -28,17 +28,21 @@ def add_order_data_to_models(request):
         customerPhone = request.POST['phone'] if request.POST['phone'] != "" else "Anonymous"
         productQuantityA = request.POST['productQuantityA'] if request.POST['productQuantityA'] != "" else 0
         productQuantityB = request.POST['productQuantityB'] if request.POST['productQuantityB'] != "" else 0
+        promoCode = request.POST['promoCode'] if request.POST['promoCode'] != '' else "no-code-submitted"
+        productPrice = request.POST['productPrice'] if request.POST['productPrice'] != "" else 0
+        shippingPrice = request.POST['shippingPrice'] if request.POST['shippingPrice'] != "Sorry JNE can't reach your city yet" else 0
+        grandTotalPrice = request.POST['totalPrice'] if request.POST[productPrice] != "" else 0
+
         productQuantityA = int(productQuantityA)
         productQuantityB = int(productQuantityB)
-        customerAddress = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
+        productPrice = int(productPrice)
+        shippingPrice = int(shippingPrice)
+        grandTotalPrice = int(totalPrice)
+
+
+      customerAddress = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
         city = request.POST['kota'] if request.POST['kota'] != "" else "Anonymous"
 
-        productPriceA = productQuantityA * 89000
-        productPriceB = productQuantityB * 7000
-        productPriceA = int(productPriceA)
-        productPriceB = int(productPriceB)
-        totalProductPrice = productPriceA + productPriceB
-        # totalPrice
         print("productQuantityA " + str(productQuantityA))
         print("productQuantityB " + str(productQuantityB))
         print("street " + str(customerAddress))
@@ -48,8 +52,9 @@ def add_order_data_to_models(request):
         print("totalProductPrice " + str(totalProductPrice))
         print("productQuantityA " + str(productQuantityA))
 
-        order = OrderList(customerName = customerName, customerEmail = customerEmail, customerPhone = customerPhone, productQuantityA=productQuantityA,
-            productQuantityB = productQuantityB, customerAddress = customerAddress, productPrice = totalProductPrice, shippingPrice = 0, totalPrice = 0, promoCode = "0")
+        order = OrderList(customerName = customerName, customerEmail = customerEmail, customerPhone = customerPhone, 
+            productQuantityA=productQuantityA,productQuantityB = productQuantityB, customerAddress = customerAddress,
+            productPrice = productPrice, shippingPrice = shippingPrice, grandTotalPrice = grandTotalPrice, promoCode = promoCode)
         order.save()
         cek = OrderList.objects.get(customerName = customerName)
         print(cek)
