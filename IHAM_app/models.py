@@ -4,13 +4,13 @@ from django.db import models
 class OrderList(models.Model):
     customerName = models.CharField(max_length=140, blank=False)
     customerEmail = models.EmailField(max_length=140, blank=False)
-    customerPhone = models.IntegerField(blank=False)
+    customerPhone = models.BigIntegerField(blank=False)
     productQuantityA = models.IntegerField()
     productQuantityB = models.IntegerField()
     customerAddress = models.CharField(max_length=140, blank=False)
-    productPrice = models.IntegerField() #Ini field baru zar
-    shippingPrice = models.IntegerField() #Ini field baru zar
-    grandTotalPrice = models.IntegerField(blank=False)
+    productPrice = models.BigIntegerField() #Ini field baru zar
+    shippingPrice = models.BigIntegerField() #Ini field baru zar
+    grandTotalPrice = models.BigIntegerField(blank=False)
     promoCode = models.CharField(max_length=140, blank=True)
     paidFlage = models.BooleanField(default=False) #Ini field baru zar
     deliveredFlage = models.BooleanField(default=False) #Ini field baru zar
