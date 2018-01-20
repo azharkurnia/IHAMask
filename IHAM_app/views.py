@@ -33,40 +33,46 @@ def add_order_data_to_models(request):
         promoCode = request.POST['promoCode'] if request.POST['promoCode'] != '' else "no-code-submitted"
         productPrice = request.POST['productPrice'] if request.POST['productPrice'] != "" else 0
         shippingPrice = request.POST['shippingPrice'] if request.POST['shippingPrice'] != "Sorry JNE can't reach your city yet" else 0
-        grandTotalPrice = request.POST['totalPrice'] if request.POST[productPrice] != "" else 0
+        grandTotalPrice = request.POST['totalPrice'] if request.POST["totalPrice"] != "" else 0
 
         productQuantityA = int(productQuantityA)
         productQuantityB = int(productQuantityB)
         productPrice = int(productPrice)
         shippingPrice = int(shippingPrice)
-        grandTotalPrice = int(totalPrice)
+        grandTotalPrice = int(grandTotalPrice)
 
 
-      customerAddress = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
+        customerAddress = request.POST['street'] if request.POST['street'] != "" else "Anonymous"
         city = request.POST['kota'] if request.POST['kota'] != "" else "Anonymous"
 
         print("productQuantityA " + str(productQuantityA))
         print("productQuantityB " + str(productQuantityB))
         print("street " + str(customerAddress))
         print("city " + str(city))
-        print("productPriceA " + str(productPriceA))
-        print("productPriceB " + str(productPriceB))
-        print("totalProductPrice " + str(totalProductPrice))
-        print("productQuantityA " + str(productQuantityA))
+        # print("productPriceA " + str(productPriceA))
+        # print("productPriceB " + str(productPriceB))
+        # print("totalProductPrice " + str(totalProductPrice))
+        # print("productQuantityA " + str(productQuantityA))
+        print("shippingPrice " + str(shippingPrice))
 
-        order = OrderList(customerName = customerName, customerEmail = customerEmail, customerPhone = customerPhone, 
-            productQuantityA=productQuantityA,productQuantityB = productQuantityB, customerAddress = customerAddress,
-            productPrice = productPrice, shippingPrice = shippingPrice, grandTotalPrice = grandTotalPrice, promoCode = promoCode)
+        order = OrderList(
+            customerName = customerName,
+            customerEmail = customerEmail,
+            customerPhone = customerPhone,
+            productQuantityA=productQuantityA,
+            productQuantityB = productQuantityB,
+            customerAddress = customerAddress,
+            productPrice = productPrice,
+            shippingPrice = shippingPrice,
+            grandTotalPrice = grandTotalPrice,
+            promoCode = promoCode
+            )
         order.save()
-        cek = OrderList.objects.get(customerName = customerName)
-        print(cek)
 
         #JALANIN SEND EMAIL DISINI
-        email = EmailMessage('title', 'body', to=[email])
-        email.send()
-        return HttpResponseRedirect('')
-
-
+        # email = EmailMessage('title', 'body', to=[email])
+        # email.send()
+        return HttpResponse("Complete")
 
 # method untuk mendapatkan semua kota atau kabupaten
 def get_city(request):
@@ -80,7 +86,7 @@ def get_city(request):
     data = res.read()
     data = data.decode("utf-8")
     data_city = json.loads(data)
-    print(data)
+    # print(data)
     return JsonResponse(data_city)
 
 
@@ -105,7 +111,6 @@ def get_price(request, destination):
 
 @csrf_exempt
 def check_code(request):
-    # print(current_code)
     if(request.method == 'POST'):
         current_code = request.POST['code']
         email = request.POST['email_check']
@@ -113,8 +118,7 @@ def check_code(request):
             promo = PromoCode.objects.get(promoCode=current_code)
             promo = model_to_dict(promo)
             promo = ast.literal_eval(promo)
-            # if OrderList.objects.filter(customerEmail=email_check).exists():
-            if email=="a@b.com":
+            if OrderList.objects.filter(customerEmail=email).exists():
                 return HttpResponse("email")
             return JsonResponse(promo)
         except PromoCode.DoesNotExist:

@@ -106,9 +106,6 @@ function updatePrice(){
     } else {
       total = product_price + shipping_cost;
     }
-    else {
-      total = product_price + shipping_cost;
-    }
   } else {
     total = product_price + shipping_cost;
   }

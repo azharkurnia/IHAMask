@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <input type="email" class="form-control" id="InputEmail" placeholder="Enter email" required="required" name="email">
+                    <input type="email" class="form-control" id="InputEmail" placeholder="Enter email" required="required" name="email" onkeyup="email_checkPromo()">
                   </div>
                 </div>
                 <div class="form-group">
@@ -135,6 +135,12 @@
       $("#order-address").text(street);
     }
   }
+  var email_checkPromo = function(){
+    var current_code = $("#promotion-code").val();
+    if (current_code != "") {
+      check_promo();
+    }
+  }
   var check_promo = function(){
     var current_code = $("#promotion-code").val();
     var email = $("#InputEmail").val();
@@ -143,20 +149,20 @@
       url: "/form/check_code/",
     data: {code : current_code, email_check : email},
       success : function(data){
+        console.log(data);
         if ((typeof data) == "object") {
           promoAmount = data['promoAmount'];
-<<<<<<< HEAD
-          $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount <span id='promo-amount'>" + promoAmount + "</span> % of total price</p>")
-        } 
-        else if (data === "email"){
-          $("#promo-icon").html("<p>Promo Code Used &#10006;</p>")
+          $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount <span id='promo-amount'>" + promoAmount + "</span> % of total price</p>");
         }
-          else {
-=======
-          $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount <span id='promo-amount'>" + promoAmount + "</span> % of product price</p>")
-        } else {
->>>>>>> e3a260c4b84fa598b0fae35fcb37fa542f40b661
-          $("#promo-icon").html("<p>&#10006;</p>")
+        else if (data === "email"){
+          $("#promo-icon").html("<p>Promo code already used by this email &#10006;</p>");
+        }
+        else {
+          if (current_code == "") {
+            $("#promo-icon").html("");
+          } else {
+            $("#promo-icon").html("<p>&#10006;</p>");
+          }
         }
         updatePrice();
       }
@@ -182,16 +188,36 @@
       var kodepos = $("#postal").val().toString();
       var kota = kotaUntukDataBase.toString();
       var kode_promo = $("#promotion-code").val().toString();
-      var harga_barang = $('#harga-barang').val().toString();
-      var harga_kurir = $("#ongkos-kirim").val().toString();
-      var total_harga = $("#total-harga").val().toString();
+      var harga_barang = document.getElementById("harga-barang").innerHTML.toString();
+      var harga_kurir = document.getElementById("ongkos-kirim").innerHTML.toString();
+      var total_harga = document.getElementById("total-harga").innerHTML.toString();
 
       // Submit the form using AJAX.
       $.ajax({
-      type: 'POST',
-      url: $(form).attr('action'),
-      data: {name : nama, email : email, phone : nomor_hp, productQuantityA : productA, productQuantityB : productB, street : alamat,kota : kota,promoCode : kode_promo, prodcutPrice:harga_barang, shippingPrice = harga_kurir, totalPrice = total_harga},
-      })
+        type: 'POST',
+        url: $(form).attr('action'),
+        data: {
+          name : nama,
+          email : email,
+          phone : nomor_hp,
+          productQuantityA : productA,
+          productQuantityB : productB,
+          street : alamat,
+          kota : kota,
+          promoCode : kode_promo,
+          productPrice: harga_barang,
+          shippingPrice : harga_kurir,
+          totalPrice : total_harga
+        },
+        success: function(data){
+          alert(data);
+          window.location.reload();
+        },
+        error: function(){
+          alert("Failed");
+          window.location.reload();
+        }
+      });
     });
 
     // Ajax untuk mendapat data provinsi dan ditampilkan dalam select province
