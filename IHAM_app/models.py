@@ -7,7 +7,7 @@ class OrderList(models.Model):
     customerPhone = models.BigIntegerField(blank=False)
     productQuantityA = models.IntegerField()
     productQuantityB = models.IntegerField()
-    customerAddress = models.CharField(max_length=140, blank=False)
+    customerAddress = models.TextField(blank=False)
     productPrice = models.BigIntegerField() #Ini field baru zar
     shippingPrice = models.BigIntegerField() #Ini field baru zar
     grandTotalPrice = models.BigIntegerField(blank=False)

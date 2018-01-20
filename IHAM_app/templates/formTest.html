@@ -184,7 +184,7 @@
       var nomor_hp = $("#phone-number").val().toString();
       var productA = $("#quantity-productA").val().toString();
       var productB = $("#quantity-productB").val().toString();
-      var alamat = $("#order-address").val().toString();
+      var alamat = document.getElementById("order-address").innerHTML.toString();
       var kodepos = $("#postal").val().toString();
       var kota = kotaUntukDataBase.toString();
       var kode_promo = $("#promotion-code").val().toString();
