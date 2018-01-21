@@ -97,6 +97,7 @@
                     <th>Address</th>
                     <th>Promotion code</th>
                     <th>Total Price</th>
+                    <th>Ordered on</th>
                     <th>Paid</th>
                     <th>Delivered</th>
                 </tr>
@@ -111,6 +112,7 @@
                     <th>Address</th>
                     <th>Promotion code</th>
                     <th>Total Price</th>
+                    <th>Ordered on</th>
                     <th>Paid</th>
                     <th>Delivered</th>
                 </tr>
@@ -126,6 +128,7 @@
                         <td class="addressTable">{{ order.customerAddress }}</td>
                         <td class="promoTable">{{ order.promoCode }}</td>
                         <td class="priceTable">{{ order.grandTotalPrice }}</td>
+                        <td class="dateTable">{{ order.created_on }}</td>
                         <td class="paidSlider"><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
                         <td class="deliveredSlider"><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
                     </tr>
