@@ -37,12 +37,41 @@ def delete_code(request, code_id):
 	return HttpResponseRedirect('/login/adminIHA/')
 
 @login_required
-def paidSlide(request, paid_id):
+def paidSlideTrue(request, paidTrue_id):
 	print("slidepaid")
-	o = OrderList.objects.get(id=paid_id)
-	if (o.paidFlage):
-		o.paidFlage = False
-	else:
-		o.paidFlage = True
+	o = OrderList.objects.get(id=paidTrue_id)
+	o.paidFlage = True
+	print("true")
 	o.save()
+	print("saved" + paidTrue_id)
+	return render(request, 'logged_in.html', response)
+
+@login_required
+def paidSlideFalse(request, paidFalse_id):
+	print("slidepaidf")
+	o = OrderList.objects.get(id=paidFalse_id)
+	o.paidFlage = False
+	print("false")
+	o.save()
+	print("savedf" + paidFalse_id)
+	return render(request, 'logged_in.html', response)
+
+@login_required
+def deliveredSlideFalse(request, deliveredFalse_id):
+	print("slidedeliveredf")
+	o = OrderList.objects.get(id=deliveredFalse_id)
+	o.deliveredFlage = False
+	print("false")
+	o.save()
+	print("savedf" + deliveredFalse_id)
+	return render(request, 'logged_in.html', response)
+
+@login_required
+def deliveredSlideTrue(request, deliveredTrue_id):
+	print("slidedelivered")
+	o = OrderList.objects.get(id=deliveredTrue_id)
+	o.deliveredFlage = True
+	print("true")
+	o.save()
+	print("saved" + deliveredTrue_id)
 	return render(request, 'logged_in.html', response)

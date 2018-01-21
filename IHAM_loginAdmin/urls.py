@@ -9,5 +9,8 @@ urlpatterns = [
     url(r'^adminIHA/', logged_in, name = 'logged_in'),
     url(r'^add_promo_code/', add_promo_code, name = 'add_promo_code'),
     url(r'^delete_code/(?P<code_id>[0-9]+)/$', delete_code, name='delete_code'),
-    url(r'^paidSlide/(?P<paid_id>[0-9]+)/$', paidSlide, name='paidSlide'),
+    url(r'^paidSlideTrue/(?P<paidTrue_id>[0-9]+)/$', paidSlideTrue, name='paidSlideTrue'),
+    url(r'^paidSlideFalse/(?P<paidFalse_id>[0-9]+)/$', paidSlideFalse, name='paidSlideFalse'),
+    url(r'^deliveredSlideFalse/(?P<deliveredFalse_id>[0-9]+)/$', deliveredSlideFalse, name='deliveredSlideFalse'),
+    url(r'^deliveredSlideTrue/(?P<deliveredTrue_id>[0-9]+)/$', deliveredSlideTrue, name='deliveredSlideTrue'),
 ]
