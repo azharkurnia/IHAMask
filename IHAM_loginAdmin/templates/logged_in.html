@@ -94,19 +94,30 @@
 <br><br>
 <div class="row">
     <div class="col-md-12 col-xs-12">
-        <table align="center" style="text-align: center">
-            <tr>
-                <th>Promo code</th>
-                <th>Promo amount</th>
-                <th></th>
-            </tr>
-            {% for promo in promoCodeList %}
+        <table id="example2" class="display" cellspacing="0" width="100%">
+            <thead>
                 <tr>
-                    <td class="codeTable">{{ promo.promoCode }}</td>
-                    <td class="amountTable">{{ promo.promoAmount }}%</td>
-                    <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" onclick="deleteCode({{ promo.pk }})">X</button></td>
+                    <th>Promo code</th>
+                    <th>Promo amount</th>
+                    <th></th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Promo code</th>
+                    <th>Promo amount</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for promo in promoCodeList %}
+                    <tr>
+                        <td class="codeTable">{{ promo.promoCode }}</td>
+                        <td class="amountTable">{{ promo.promoAmount }}%</td>
+                        <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" onclick="deleteCode({{ promo.pk }})">X</button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 </div>
@@ -142,6 +153,28 @@
             $( 'input', this.footer() ).on( 'keyup change', function () {
                 if ( that.search() !== this.value ) {
                     that
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
+
+
+        $('#example2 tfoot th').each( function () {
+            var title2 = $(this).text();
+            $(this).html( '<input type="text" placeholder="Search '+title2+'" />' );
+        } );
+     
+        // DataTable
+        var table2 = $('#example2').DataTable();
+     
+        // Apply the search
+        table2.columns().every( function () {
+            var that2 = this;
+     
+            $( 'input', this.footer() ).on( 'keyup change', function () {
+                if ( that2.search() !== this.value ) {
+                    that2
                         .search( this.value )
                         .draw();
                 }
