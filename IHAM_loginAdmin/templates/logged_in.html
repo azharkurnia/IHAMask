@@ -11,7 +11,9 @@
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         tfoot input {
@@ -84,7 +86,7 @@
 <br><br>
 <div class="row">
     <div class="col-md-12 col-xs-12">
-        <table id="example1" class="display" cellspacing="0" width="100%">
+        <table id="example1" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -158,7 +160,7 @@
 <br><br>
 <div class="row">
     <div class="col-md-12 col-xs-12">
-        <table id="example2" class="display" cellspacing="0" width="100%">
+        <table id="example2" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>Promo code</th>
@@ -201,49 +203,8 @@
     //     }
 
     $(document).ready(function() {
-        // Setup - add a text input to each footer cell
-        $('#example1 tfoot th').each( function () {
-            var title = $(this).text();
-            $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-        } );
-     
-        // DataTable
-        var table = $('#example1').DataTable();
-     
-        // Apply the search
-        table.columns().every( function () {
-            var that = this;
-     
-            $( 'input', this.footer() ).on( 'keyup change', function () {
-                if ( that.search() !== this.value ) {
-                    that
-                        .search( this.value )
-                        .draw();
-                }
-            } );
-        } );
-
-
-        $('#example2 tfoot th').each( function () {
-            var title2 = $(this).text();
-            $(this).html( '<input type="text" placeholder="Search '+title2+'" />' );
-        } );
-     
-        // DataTable
-        var table2 = $('#example2').DataTable();
-     
-        // Apply the search
-        table2.columns().every( function () {
-            var that2 = this;
-     
-            $( 'input', this.footer() ).on( 'keyup change', function () {
-                if ( that2.search() !== this.value ) {
-                    that2
-                        .search( this.value )
-                        .draw();
-                }
-            } );
-        } );
+        $('#example1').DataTable();
+        $('#example2').DataTable();
     } );
 </script>
 

@@ -4,7 +4,7 @@ from django.db import models
 class OrderList(models.Model):
     customerName = models.CharField(max_length=140, blank=False)
     customerEmail = models.EmailField(max_length=140, blank=False)
-    customerPhone = models.BigIntegerField(blank=False)
+    customerPhone = models.CharField(max_length=140, blank=False)
     productQuantityA = models.IntegerField()
     productQuantityB = models.IntegerField()
     customerAddress = models.TextField(blank=False)
