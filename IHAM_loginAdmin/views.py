@@ -35,3 +35,13 @@ def delete_code(request, code_id):
 	print("delete")
 	PromoCode.objects.filter(id=code_id).delete()
 	return HttpResponseRedirect('/login/adminIHA/')
+
+@login_required
+def paidSlide(request, paid_id):
+	print("slidepaid")
+	o = OrderList.objects.get(id=paid_id)
+	if (o.paidFlage):
+		o.paidFlage = False
+	else:
+		o.paidFlage = True
+	o.save()
