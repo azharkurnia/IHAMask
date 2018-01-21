@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from .models import PromoCode
+from IHAM_app.models import OrderList
 from django.http import HttpResponseRedirect
 # Create your views here.
 response = {}
@@ -11,7 +12,9 @@ def show_login(request):
 @login_required
 def logged_in(request):
 	promoCodeList = PromoCode.objects.all()
+	orderList = OrderList.objects.all()
 	response['promoCodeList'] = promoCodeList
+	response['orderList'] = orderList
 	return render(request, 'logged_in.html', response)
 
 @login_required
