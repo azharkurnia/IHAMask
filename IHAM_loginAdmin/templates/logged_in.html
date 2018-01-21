@@ -2,12 +2,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Page</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="description" content="TUGAS 2">
+    <meta name="author" content="{{ author }}">
+
+    <!-- bootstrap csss -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -16,30 +23,48 @@
 <br><br>
 <div class="row">
     <div class="col-md-12 col-xs-12">
-        <table align="center" style="text-align: center">
-            <tr>
-                <th>Name</th>
-                <th>Email address</th>
-                <th>Phone number</th>
-                <th>Product A</th>
-                <th>Product B</th>
-                <th>Address</th>
-                <th>Promotion code</th>
-                <th>Total Price</th>
-            </tr>
-            {% for order in orderList %}
+        <table id="example1" class="display" cellspacing="0" width="100%">
+            <thead>
                 <tr>
-                    <td class="nameTable">{{ order.customerName }}</td>
-                    <td class="emailTable">{{ order.customerEmail }}</td>
-                    <td class="phoneTable">0{{ order.customerPhone }}</td>
-                    <td class="quantityATable">{{ order.productQuantityA }}</td>
-                    <td class="quantityBTable">{{ order.productQuantityB }}</td>
-                    <td class="addressTable">{{ order.customerAddress }}</td>
-                    <td class="promoTable">{{ order.promoCode }}</td>
-                    <td class="priceTable">{{ order.grandTotalPrice }}</td>
-                    <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" >X</button></td>
+                    <th>Name</th>
+                    <th>Email address</th>
+                    <th>Phone number</th>
+                    <th>Product A</th>
+                    <th>Product B</th>
+                    <th>Address</th>
+                    <th>Promotion code</th>
+                    <th>Total Price</th>
+                    <th></th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Email address</th>
+                    <th>Phone number</th>
+                    <th>Product A</th>
+                    <th>Product B</th>
+                    <th>Address</th>
+                    <th>Promotion code</th>
+                    <th>Total Price</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for order in orderList %}
+                    <tr>
+                        <td class="nameTable">{{ order.customerName }}</td>
+                        <td class="emailTable">{{ order.customerEmail }}</td>
+                        <td class="phoneTable">0{{ order.customerPhone }}</td>
+                        <td class="quantityATable">{{ order.productQuantityA }}</td>
+                        <td class="quantityBTable">{{ order.productQuantityB }}</td>
+                        <td class="addressTable">{{ order.customerAddress }}</td>
+                        <td class="promoTable">{{ order.promoCode }}</td>
+                        <td class="priceTable">{{ order.grandTotalPrice }}</td>
+                        <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" >X</button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 </div>
@@ -89,6 +114,7 @@
 
 
 </body>
+
 <script>
     var deleteCode = function(pk){
           console.log(pk);
@@ -98,5 +124,37 @@
     // function deleteCode(id){
     //         window.open('deleteCode/'+id+'/', '_self');
     //     }
+
+    $(document).ready(function() {
+        // Setup - add a text input to each footer cell
+        $('#example1 tfoot th').each( function () {
+            var title = $(this).text();
+            $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+        } );
+     
+        // DataTable
+        var table = $('#example1').DataTable();
+     
+        // Apply the search
+        table.columns().every( function () {
+            var that = this;
+     
+            $( 'input', this.footer() ).on( 'keyup change', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                        .search( this.value )
+                        .draw();
+                }
+            } );
+        } );
+    } );
 </script>
+
+<style>
+    tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+</style>
 </html>
