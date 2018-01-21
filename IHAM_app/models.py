@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class OrderList(models.Model):
@@ -14,7 +15,7 @@ class OrderList(models.Model):
     promoCode = models.CharField(max_length=140, blank=True)
     paidFlage = models.BooleanField(default=False) #Ini field baru zar
     deliveredFlage = models.BooleanField(default=False) #Ini field baru zar
-    created_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(default=timezone.now)
 
 class promoCode(models.Model):
 	promoName = models.CharField(max_length=10, blank=False)
