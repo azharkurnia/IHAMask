@@ -45,3 +45,4 @@ def paidSlide(request, paid_id):
 	else:
 		o.paidFlage = True
 	o.save()
+	return render(request, 'logged_in.html', response)

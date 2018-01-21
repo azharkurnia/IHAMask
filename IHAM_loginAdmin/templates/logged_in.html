@@ -132,7 +132,7 @@
                         <td class="promoTable">{{ order.promoCode }}</td>
                         <td class="priceTable">{{ order.grandTotalPrice }}</td>
                         <td class="dateTable">{{ order.created_on }}</td>
-                        <td class="paidSlider">{% if order.paidFlage %}<label class="switch" onclick="paidSlide({{ promo.pk }})"><input type="checkbox" checked ><span class="slider round"></span></label>{% else %}<label class="switch" onclick="paidSlide({{ promo.pk }})"><input type="checkbox"><span class="slider round"></span></label>{% endif %}</td>
+                        <td class="paidSlider">{% if order.paidFlage %}<label class="switch" onclick="paidSlide({{ order.pk }})"><input type="checkbox" checked ><span class="slider round"></span></label>{% else %}<label class="switch" onclick="paidSlide({{ order.pk }})"><input type="checkbox"><span class="slider round"></span></label>{% endif %}</td>
                         <td class="deliveredSlider">{% if order.deliveredFlage %}<label class="switch"><input type="checkbox" checked ><span class="slider round"></span></label>{% else %}<label class="switch"><input type="checkbox"><span class="slider round"></span></label>{% endif %}</td>
                     </tr>
                 {% endfor %}
@@ -208,7 +208,7 @@
           console.log(pk);
           $.ajax({
             method: "GET",
-            url: "paidSlide/"+pk+"/",
+            url: "/login/paidSlide/"+pk+"/",
         });
     }
     // function deleteCode(id){
