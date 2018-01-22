@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Page</title>
+    <title>Admin</title>
 
     <!-- bootstrap csss -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -23,7 +23,6 @@
 body, html {
     height: 100%;
     background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
 }
 
 
@@ -162,8 +161,8 @@ body, html {
 <body> 
 	<div class="container">
         <div class="card card-container">
-			<title>Login Admin</title>
-			<center><h2>Login Admin</h2></center>
+			<title>Admin</title>
+			<center><h2>IHAMask Admin</h2></center>
 			<form method="post">
 				{% csrf_token %}
 				{{ form.as_p }}
