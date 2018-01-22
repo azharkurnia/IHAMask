@@ -92,14 +92,14 @@
                     <th>Name</th>
                     <th>Email address</th>
                     <th>Phone number</th>
-                    <th>Qty</th>
-<!--                     <th>Product B</th>
- -->                    <th>Address</th>
+                    <th>Tea Tree Organic (qt)</th>
+                    <th>Address</th>
                     <th>Promotion code</th>
                     <th>Total Price</th>
                     <th>Ordered on</th>
                     <th>Paid</th>
                     <th>Delivered</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -114,8 +114,9 @@
                         <td class="promoTable">{% if order.promoCode == "no-code-submitted" %}<font color="red">None</font>{% else %}{{ order.promoCode }}{% endif %}</td>
                         <td class="priceTable">{{ order.grandTotalPrice }}</td>
                         <td class="dateTable">{{ order.created_on }}</td>
-                        <td class="paidSlider">{% if order.paidFlage %}<label class="switch" onclick="paidSlideFalse({{ order.pk }})"><input type="checkbox" checked ><span class="slider round"></span></label>{% else %}<label class="switch" onclick="paidSlideTrue({{ order.pk }})"><input type="checkbox"><span class="slider round"></span></label>{% endif %}</td>
-                        <td class="deliveredSlider">{% if order.deliveredFlage %}<label class="switch" onclick="deliveredSlideFalse({{ order.pk }})"><input type="checkbox" checked ><span class="slider round"></span></label>{% else %}<label class="switch" onclick="deliveredSlideTrue({{ order.pk }})"><input type="checkbox"><span class="slider round"></span></label>{% endif %}</td>
+                        <td class="paidSlider">{% if order.paidFlage %}<label class="switch" ><input type="checkbox" checked onclick="paidSlide({{ order.pk }})"><span class="slider round"></span></label>{% else %}<label class="switch"><input type="checkbox" onclick="paidSlide({{ order.pk }})"><span class="slider round"></span></label>{% endif %}</td>
+                        <td class="deliveredSlider">{% if order.deliveredFlage %}<label class="switch"><input type="checkbox" checked onclick="deliveredSlide({{ order.pk }})"><span class="slider round"></span></label>{% else %}<label class="switch"><input type="checkbox" onclick="deliveredSlide({{ order.pk }})"><span class="slider round"></span></label>{% endif %}</td>
+                        <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" onclick="deleteOrder({{ order.pk }})">Delete</button></td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -158,7 +159,7 @@
                     <tr>
                         <td class="codeTable">{{ promo.promoCode }}</td>
                         <td class="amountTable">{{ promo.promoAmount }}%</td>
-                        <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" onclick="deleteCode({{ promo.pk }})">X</button></td>
+                        <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" onclick="deleteCode({{ promo.pk }})">Delete</button></td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -309,34 +310,24 @@
       window.open("/login/delete_event/"+pk+"/", '_self');
     }
 
-    var paidSlideTrue = function(pk){
-          $.ajax({
-            method: "GET",
-            url: "/login/paidSlideTrue/"+pk+"/",
-        });
-    }
+    var deleteOrder = function(pk){
+          console.log(pk);
+          window.open("/login/delete_order/"+pk+"/", '_self');
+        }
 
-    var paidSlideFalse = function(pk){
+    var paidSlide = function(pk){
           console.log(pk);
           $.ajax({
             method: "GET",
-            url: "/login/paidSlideFalse/"+pk+"/",
+            url: "/login/paidSlide/"+pk+"/",
         });
     }
 
-    var deliveredSlideFalse = function(pk){
+    var deliveredSlide = function(pk){
           console.log(pk);
           $.ajax({
             method: "GET",
-            url: "/login/deliveredSlideFalse/"+pk+"/",
-        });
-    }
-
-    var deliveredSlideTrue = function(pk){
-          console.log(pk);
-          $.ajax({
-            method: "GET",
-            url: "/login/deliveredSlideTrue/"+pk+"/",
+            url: "/login/deliveredSlide/"+pk+"/",
         });
     }
     // function deleteCode(id){

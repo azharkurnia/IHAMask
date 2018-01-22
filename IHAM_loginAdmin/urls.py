@@ -13,8 +13,7 @@ urlpatterns = [
     url(r'^delete_code/(?P<code_id>[0-9]+)/$', delete_code, name='delete_code'),
     url(r'^delete_faq/(?P<code_id>[0-9]+)/$', delete_faq, name='delete_faq'),
     url(r'^delete_event/(?P<code_id>[0-9]+)/$', delete_event, name='delete_event'),
-    url(r'^paidSlideTrue/(?P<paidTrue_id>[0-9]+)/$', paidSlideTrue, name='paidSlideTrue'),
-    url(r'^paidSlideFalse/(?P<paidFalse_id>[0-9]+)/$', paidSlideFalse, name='paidSlideFalse'),
-    url(r'^deliveredSlideFalse/(?P<deliveredFalse_id>[0-9]+)/$', deliveredSlideFalse, name='deliveredSlideFalse'),
-    url(r'^deliveredSlideTrue/(?P<deliveredTrue_id>[0-9]+)/$', deliveredSlideTrue, name='deliveredSlideTrue'),
+    url(r'^delete_order/(?P<order_id>[0-9]+)/$', delete_order, name='delete_order'),
+    url(r'^paidSlide/(?P<paid_id>[0-9]+)/$', paidSlide, name='paidSlide'),
+    url(r'^deliveredSlide/(?P<delivered_id>[0-9]+)/$', deliveredSlide, name='deliveredSlide'),
 ]
