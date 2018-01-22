@@ -135,7 +135,7 @@
                         <td class="priceTable">{{ order.grandTotalPrice }}</td>
                         <td class="dateTable">{{ order.created_on }}</td>
                         <td class="paidSlider">{% if order.paidFlage %}<label class="switch" ><input type="checkbox" checked onclick="paidSlide({{ order.pk }})"><span class="slider round"></span></label>{% else %}<label class="switch"><input type="checkbox" onclick="paidSlide({{ order.pk }})"><span class="slider round"></span></label>{% endif %}</td>
-                        <td class="deliveredSlider">{% if order.deliveredFlage %}<label class="switch" onclick="deliveredSlide({{ order.pk }})"><input type="checkbox" checked ><span class="slider round"></span></label>{% else %}<label class="switch" onclick="deliveredSlide({{ order.pk }})"><input type="checkbox"><span class="slider round"></span></label>{% endif %}</td>
+                        <td class="deliveredSlider">{% if order.deliveredFlage %}<label class="switch"><input type="checkbox" checked onclick="deliveredSlide({{ order.pk }})"><span class="slider round"></span></label>{% else %}<label class="switch"><input type="checkbox" onclick="deliveredSlide({{ order.pk }})"><span class="slider round"></span></label>{% endif %}</td>
                         <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" onclick="deleteOrder({{ order.pk }})">Delete</button></td>
                     </tr>
                 {% endfor %}
