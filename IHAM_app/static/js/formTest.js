@@ -34,10 +34,11 @@ $(document).ready(function(){
   });
 
   // Setiap update kuantitas produk, update harga juga
-  $("#quantity-productA").keyup(function(){
+  $("#quantity-productA").bind('keyup mouseup', function(){
+    console.log("change");
     updatePrice();
   });
-  $("#quantity-productB").keyup(function(){
+  $("#quantity-productB").bind('keyup mouseup', function(){
     updatePrice();
   });
 
