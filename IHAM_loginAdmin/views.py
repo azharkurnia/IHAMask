@@ -32,8 +32,14 @@ def add_promo_code(request):
 
 @login_required
 def delete_code(request, code_id):
-	print("delete")
+	print("delete_code")
 	PromoCode.objects.filter(id=code_id).delete()
+	return HttpResponseRedirect('/login/adminIHA/')
+
+@login_required
+def delete_order(request, order_id):
+	print("delete_order")
+	OrderList.objects.filter(id=order_id).delete()
 	return HttpResponseRedirect('/login/adminIHA/')
 
 @login_required
