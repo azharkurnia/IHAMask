@@ -8,12 +8,13 @@
 
     <!-- bootstrap csss -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/r-2.2.1/datatables.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/r-2.2.1/datatables.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         tfoot input {
@@ -81,23 +82,19 @@
 </head>
 
 <body>
-<a href="/login/logout" class="btn btn-info btn-lg">
-  <span class="glyphicon glyphicon-log-out"></span> Log out
-</a>
 <br><br>
-<h3 style="text-align: center">Pesanan</h3>
-<br><br>
+<h3 style="text-align: center">IHA Mask Web Sales</h3>
 <div class="row">
-    <div class="col-md-12 col-xs-12">
+    <div class="col-md-12 col-xs-12" style="padding: 5%">
         <table id="example1" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Email address</th>
                     <th>Phone number</th>
-                    <th>Product A</th>
-                    <th>Product B</th>
-                    <th>Address</th>
+                    <th>Qty</th>
+<!--                     <th>Product B</th>
+ -->                    <th>Address</th>
                     <th>Promotion code</th>
                     <th>Total Price</th>
                     <th>Ordered on</th>
@@ -105,21 +102,6 @@
                     <th>Delivered</th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Email address</th>
-                    <th>Phone number</th>
-                    <th>Product A</th>
-                    <th>Product B</th>
-                    <th>Address</th>
-                    <th>Promotion code</th>
-                    <th>Total Price</th>
-                    <th>Ordered on</th>
-                    <th>Paid</th>
-                    <th>Delivered</th>
-                </tr>
-            </tfoot>
             <tbody>
                 {% for order in orderList %}
                     <tr>
@@ -127,8 +109,8 @@
                         <td class="emailTable">{{ order.customerEmail }}</td>
                         <td class="phoneTable">0{{ order.customerPhone }}</td>
                         <td class="quantityATable">{{ order.productQuantityA }}</td>
-                        <td class="quantityBTable">{{ order.productQuantityB }}</td>
-                        <td class="addressTable">{{ order.customerAddress }}</td>
+<!--                         <td class="quantityBTable">{{ order.productQuantityB }}</td>
+ -->                        <td class="addressTable">{{ order.customerAddress }}</td>
                         <td class="promoTable">{{ order.promoCode }}</td>
                         <td class="priceTable">{{ order.grandTotalPrice }}</td>
                         <td class="dateTable">{{ order.created_on }}</td>
@@ -140,10 +122,12 @@
         </table>
     </div>
 </div>
-	<section name="form promo">
+	<section id="form promo">
+      <h3 style="text-align: center">Edit Promo Code</h3>
 		<form method="POST" action="{% url 'IHAM_loginAdmin:add_promo_code' %}">
 			{% csrf_token %}
-			<div class="col-md-6" style="padding-left: 0;">
+      <div class="row">
+			<div class="col-md-6" style="padding: 5%">
 				<div class="form-group">
 	                  <label for="InputName">Promo Code</label>
 	                  <div class="input-group">
@@ -156,16 +140,11 @@
                     <input type="number" class="form-control" placeholder="Enter the promo amount" min="0" step="1" id="promo-amount" title="Input must be a number" name="amount" required>
                   </div>
                 </div>
-        	</div>
         	<br>
               <button type="submit" class="btn d-flex" id='submit-button'>Add promo code</button>
+                               </div>
 		</form>
-	</section>
-    <br><br>
-	<h3 style="text-align: center">Promo yang ada</h3>
-<br><br>
-<div class="row">
-    <div class="col-md-12 col-xs-12">
+    <div class="col-md-6 col-xs-12" style="padding: 5%">
         <table id="example2" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
@@ -174,13 +153,6 @@
                     <th></th>
                 </tr>
             </thead>
-            <tfoot>
-                <tr>
-                    <th>Promo code</th>
-                    <th>Promo amount</th>
-                    <th></th>
-                </tr>
-            </tfoot>
             <tbody>
                 {% for promo in promoCodeList %}
                     <tr>
@@ -193,19 +165,151 @@
         </table>
     </div>
 </div>
+</div>
+          </div>
+</section>
+<section id="form event">
+      <h3 style="text-align: center">Edit Upcoming Events</h3>
+    <form method="POST" action="{% url 'IHAM_loginAdmin:add_event' %}">
+      {% csrf_token %}
+      <div class="row">
+      <div class="col-md-6" style="padding: 5%">
+        <div class="form-group">
+                    <label for="InputName">Event Name</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="InputCode" placeholder="Enter the Event Name" name="eventName" required>
+                    </div>
+              </div>
+        <div class="form-group">
+                    <label for="InputName">Event URL</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="InputCode" placeholder="Enter the Event URL" name="eventURL" required>
+                    </div>
+              </div>
+        <div class="form-group">
+                    <label for="InputName">Event Venue</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="InputCode" placeholder="Enter the Event Venue" name="eventVenue" required>
+                    </div>
+              </div>
+        <div class="form-group">
+                    <label for="InputName">Event Name</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="InputCode" placeholder="Enter the Event Date" name="eventDate" required>
+                    </div>
+              </div>
 
+          <br>
+              <button type="submit" class="btn d-flex" id='submit-button'>Add Event</button>
+                               </div>
+    </form>
+    <div class="col-md-6 col-xs-12" style="padding: 5%">
+        <table id="example3" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Event Date</th>
+                    <th>Event Venue</th>
+                    <th>Event Url</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in upcomingEvents %}
+                    <tr>
+                        <td class="codeTable">{{ event.eventName }}</td>
+                        <td class="codeTable">{{ event.eventDate }}</td>
+                        <td class="codeTable">{{ event.eventVenue }}</td>
+                        <td class="codeTable">{{ event.eventURL }}</td>
+                        <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" onclick="deleteEvent({{ event.pk }})">X</button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+          </div>
+</section>
+<section id="form faq">
+      <h3 style="text-align: center">Edit FAQ</h3>
+    <form method="POST" action="{% url 'IHAM_loginAdmin:add_faq' %}">
+      {% csrf_token %}
+      <div class="col-md-12" style="padding: 5%">
+        <div class="form-group">
+                    <label for="InputName">Title in English</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="InputCode" name="titleEng" required>
+                    </div>
+              </div>
+        <div class="form-group">
+                    <label for="InputName">Title in Indonesian</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="InputCode" name="titleIndo" required>
+                    </div>
+              </div>
+        <div class="form-group">
+                    <label for="InputName">Content in English</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="InputCode"  name="isiEng" required>
+                    </div>
+              </div>
+        <div class="form-group">
+                    <label for="InputName">Content in Indonesian</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="InputCode" name="isiIndo" required>
+                    </div>
+              </div>
+          <br>
+              <button type="submit" class="btn d-flex" id='submit-button'>Add FAQ</button>
+                               </div>
+    </form>
+    <div class="row col-md-12 col-xs-12" style="padding: 5%">
+        <table id="example4" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Title Indo</th>
+                    <th>Title Eng</th>
+                    <th>Isi Indo</th>
+                    <th>Isi Eng</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for faq in FAQ %}
+                    <tr>
+                        <td class="codeTable">{{ faq.titleIndo }}</td>
+                        <td class="codeTable">{{ faq.titleEng }}</td>
+                        <td class="codeTable">{{ faq.isiIndo }}</td>
+                        <td class="codeTable">{{ faq.isiEng }}</td>
+                        <td class="deleteButton"><button type="button" class="btn btn-xs btn-danger" onclick="deleteFAQ({{ faq.pk }})">X</button></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</div>
+</div>
+          </div>
+</section>
+<footer>
+  <p style="text-align: center">&copy; 2018 IHA Mask Admin System by ACFF</p>
+</footer>
 
 
 </body>
 
 <script>
     var deleteCode = function(pk){
-          console.log(pk);
           window.open("/login/delete_code/"+pk+"/", '_self');
         }
+    var deleteFAQ = function(pk){
+      window.open("/login/delete_faq/"+pk+"/", '_self');
+    }
+        var deleteEvent = function(pk){
+      window.open("/login/delete_event/"+pk+"/", '_self');
+    }
 
     var paidSlideTrue = function(pk){
-          console.log(pk);
           $.ajax({
             method: "GET",
             url: "/login/paidSlideTrue/"+pk+"/",
@@ -240,8 +344,28 @@
     //     }
 
     $(document).ready(function() {
-        $('#example1').DataTable();
-        $('#example2').DataTable();
+        $('#example1').DataTable({
+          responsive: true,
+          dom: 'Bfrtip',
+          lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
+        buttons: [
+            {
+                extend: 'excelHtml5',
+                title: 'IHAMAsk Web Sales Report',
+                messageTop: 'Exported On '+Date($.now()),
+                exportOptions: {
+                    columns: [0,1,2,3,4,5,6,7,8]
+                }
+            },
+            'pageLength'
+        ]
+        });
+        $('#example2').DataTable({responsive: true});
+        $('#example3').DataTable({responsive: true});
+        $('#example4').DataTable({responsive: true});
     } );
 </script>
 
