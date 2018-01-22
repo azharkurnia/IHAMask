@@ -232,7 +232,9 @@
     //     }
 
     $(document).ready(function() {
-        $('#example1').DataTable();
+        $('#example1').DataTable( {
+          "order" : [[ 8, "asc" ]]
+        } );
         $('#example2').DataTable();
     } );
 </script>
