@@ -9,8 +9,6 @@ window.addEventListener( "pageshow", function ( event ) {
 
 $(document).ready(function(){
 
-
-
   // Memastikan value kuantitas nol di awal
   var shipping_cost;
   $("#quantity-productA").val("");
@@ -35,12 +33,126 @@ $(document).ready(function(){
 
   // Setiap update kuantitas produk, update harga juga
   $("#quantity-productA").bind('keyup mouseup', function(){
-    console.log("change");
     updatePrice();
   });
   $("#quantity-productB").bind('keyup mouseup', function(){
     updatePrice();
   });
+
+  
+
+    var form = $('#form');
+    $(form).submit(function(event) {
+      // Stop the browser from submitting the form.
+      event.preventDefault();
+
+      // TODO
+      // Serialize the form data.]
+      var nama = $("#InputName").val().toString();
+      var email = $("#InputEmail").val().toString();
+      var nomor_hp = $("#phone-number").val().toString();
+      var productA = $("#quantity-productA").val().toString();
+      var productB = $("#quantity-productB").val().toString();
+      var alamat = document.getElementById("order-address").innerHTML.toString();
+      var kodepos = $("#postal").val().toString();
+      var kota = kotaUntukDataBase.toString();
+      var kode_promo = $("#promotion-code").val().toString();
+      var harga_barang = document.getElementById("harga-barang").innerHTML.toString();
+      var harga_kurir = document.getElementById("ongkos-kirim").innerHTML.toString();
+      var total_harga = document.getElementById("total-harga").innerHTML.toString();
+
+      // Submit the form using AJAX.
+      $.ajax({
+        type: 'POST',
+        url: $(form).attr('action'),
+        data: {
+          name : nama,
+          email : email,
+          phone : nomor_hp,
+          productQuantityA : productA,
+          productQuantityB : productB,
+          street : alamat,
+          kota : kota,
+          promoCode : kode_promo,
+          productPrice: harga_barang,
+          shippingPrice : harga_kurir,
+          totalPrice : total_harga
+        },
+        success: function(data){
+          alert(data);
+          window.location.reload();
+        },
+        error: function(){
+          alert("Failed");
+          window.location.reload();
+        }
+      });
+    });
+
+    // Ajax untuk mendapat data provinsi dan ditampilkan dalam select province
+    $.ajax({
+        method: "GET",
+        url: "/form/get_city/",
+        async: false,
+        success : function (data) {
+            listCity = data['rajaongkir']['results'];
+            for (var i = 0; i < listCity.length; i++) {
+              listCity[i]['id'] = listCity[i]['city_id'];
+              listCity[i]['text'] = listCity[i]['type'] + " " + listCity[i]['city_name'];
+            }
+            console.log(listCity);
+            if (localStorage.getItem("listCity") === null) {
+              localStorage.setItem("listCity", JSON.stringify(listCity));
+            }
+            $(".my-select-city").select2({
+              placeholder: "Select Your Region",
+              "data" : listCity
+             });
+        }
+    });
+
+    $(".my-select-city").on('change', function (e){
+      var index;
+      var id_kota = $(".my-select-city").val();
+      for (var i = 0; i < listCity.length; i++){
+        if (listCity[i]['id'] == id_kota){
+          index = i;
+          kotaDipilih = listCity[i]
+          break;
+        }
+      }
+
+      console.log(kotaDipilih);
+      updateAddress();
+      $.ajax({
+        method: "GET",
+        url: "/form/get_price/" + (index+1) + "/",
+        success : function(data) {
+          console.log(data);
+          var nama_kota = data['rajaongkir']['destination_details']['city_name'];
+          kotaUntukDataBase = nama_kota;
+          console.log(nama_kota);
+          if ((data['rajaongkir']['results'][0]['costs']).length > 0) {
+            try {
+                var shipping_cost = data['rajaongkir']['results'][0]['costs'][1]['cost'][0]['value'];
+            }
+            catch(err) {
+                var shipping_cost = data['rajaongkir']['results'][0]['costs'][0]['cost'][0]['value'];
+            }
+          } else {
+              shipping_cost = 0;
+          }
+          getShippingCost(shipping_cost);
+          updatePrice();
+
+        }
+      })
+    });
+
+
+
+    // Menampilkan halaman HTML [HARUS SELALU DIAKHIR DOCUMENT READY]
+    $("body").css("display", "inherit");
 
 
 });
@@ -124,3 +236,53 @@ function getDiscount(amount){
   discount = ((amount / 100) * product_price);
   return discount;
 }
+
+  var listCity;
+  var i = 1;
+  var city;
+  var kotaDipilih;
+  var kotaUntukDataBase;
+  var updateAddress = function(){
+    var street = $("#street").val();
+    try {
+      var city = kotaDipilih['text'];
+      var province = kotaDipilih['province'];
+      var postal_code = $("#postal").val();
+      $("#order-address").text(street + " , " + city + " , " + province + " , " + postal_code);
+    } catch (e) {
+      $("#order-address").text(street);
+    }
+  }
+  var email_checkPromo = function(){
+    var current_code = $("#promotion-code").val();
+    if (current_code != "") {
+      check_promo();
+    }
+  }
+  var check_promo = function(){
+    var current_code = $("#promotion-code").val();
+    var email = $("#InputEmail").val();
+    $.ajax({
+      method: "POST",
+      url: "/form/check_code/",
+    data: {code : current_code, email_check : email},
+      success : function(data){
+        console.log(data);
+        if ((typeof data) == "object") {
+          promoAmount = data['promoAmount'];
+          $("#promo-icon").html("<p style='margin-bottom: 0;'>&#10004; You got discount <span id='promo-amount'>" + promoAmount + "</span> % of total price</p>");
+        }
+        else if (data === "email"){
+          $("#promo-icon").html("<p>Promo code already used by this email &#10006;</p>");
+        }
+        else {
+          if (current_code == "") {
+            $("#promo-icon").html("");
+          } else {
+            $("#promo-icon").html("<p>&#10006;</p>");
+          }
+        }
+        updatePrice();
+      }
+    });
+  }

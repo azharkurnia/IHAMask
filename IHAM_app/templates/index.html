@@ -23,6 +23,8 @@
 	    <link rel="stylesheet" href="{% static 'css/order.css' %}">
 	    <link rel="stylesheet" href="{% static 'css/products.css' %}">
 	    <link rel="stylesheet" href="{% static 'css/one-page-style.css' %}">
+	    <link rel="stylesheet" type="text/css" href="{% static 'css/formTest.css' %}" />
+	    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
 	    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	    <style type="text/css">
 	    	.panel-default>.panel-heading {
@@ -350,9 +352,93 @@
 	</section>
 <!-- order-->
 	<section class="order section-wrapper" id="order">
-		<div class="container">
-
-		</div> <!-- /.container -->
+		<div class="orderForm">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Order</h1>
+            <form id="form" method="POST" action="{% url 'IHAM_app:add_data' %}">
+              {% csrf_token %}
+              <div class="col-md-6" style="padding-left: 0;">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="InputName" placeholder="Your name" required pattern="[A-Za-z ]+" title="Name must be alphabet" name="name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="email" class="form-control" id="InputEmail" placeholder="Enter email" required="required" name="email" onkeyup="email_checkPromo()">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter phone number" required pattern="[0-9]{10,12}" id="phone-number" title="Input must be 10-12 'number'" name="phone">
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-check">
+                    <p><Strong>Tea Tree Organic</Strong> Painless Peel Off Mask <span class="badge badge-secondary">IDR 89000</span></p>
+                    <input type="number" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productA" pattern="[0-9]+" name="productQuantityA">
+                  </div>
+                </div>
+                <div class="col-md-3" style="display: none">
+                  <div class="form-check">
+                     <label class="form-check-label">
+                       <input class="form-check-input" type="checkbox" id="checkboxB">Product B (Rp 7000)&nbsp;
+                     </label>
+                     <input type="text" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productB" style="display: none" pattern="[0-9]+" name="productQuantityB">
+                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>Total Product Price: Rp <span id="harga-barang">0</span></p>
+                </div>
+              </div>
+              <br>
+              <label class="form-control-label">Order Address:</label>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control w-100" required="required" name="street" onkeyup="updateAddress()" id="street" placeholder="Enter your address">
+                  </div>
+                  <div class="form-group">
+                    <select class="form-control my-select-city" name="city" style="width: 100%;">
+                      <option value=""></option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control w-100" required pattern="[0-9]{5}" name="postal" onkeyup="updateAddress()" id="postal" placeholder="Enter your postal code" title="Postal code consist of 5 number">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p>Ship To <span id="order-address"></span></p>
+                  <p>Shipping Price: Rp <span id="ongkos-kirim">0</span></p>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <input type="text" class="form-control w-100" name="promotion-code" id="promotion-code" placeholder="Input if you have promotion code" onkeyup="check_promo()">
+                      </div>
+                      <div class="col-md-6">
+                        <span id="promo-icon"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <h2>Total Price: Rp <span id="total-harga">0</span></h2>
+                </div>
+              </div>
+              <br>
+              <button type="submit" class="btn d-flex" id='submit-button'>Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 	</section> <!-- /.order -->
 
 
@@ -399,7 +485,11 @@
     <script src="{% static 'js/owl.carousel.min.js' %}"></script>
     <script src="{% static 'js/order.js' %}"></script>
 	<script src="{% static 'js/script.js' %}"></script>
+	<script src="{% static 'js/formTest.js' %}"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="{% static 'js/formTest.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 
