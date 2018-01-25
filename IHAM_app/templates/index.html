@@ -151,6 +151,7 @@
 					<h1 class="header-title">
 						NATURE TO GET BETTER
 					</h1>
+					<br>
 					<a class="header-subtitle" href="#order" >
 						<strong>order</strong> now
 					</a>
@@ -163,22 +164,26 @@
 <!-- story Us -->
 	<section class="story" id="story">
 		<div class="container section-wrapper">
-			<h2 class="section-title black">
+			<!-- <h2 class="section-title black">
 				about us
-			</h2> <!-- /.section-title -->
+			</h2> <!-- /.section-title --> 
 			<div class="underline purple"></div>	
 			<div class="row">
 				<div class="col-md-3 col-sm-6">
-					<img src="assets/images/about-1.png" alt="about" class="about-img">
+					<img src="{% static 'images/about-1.png' %}" alt="about" class="about-img">
 				</div> <!-- /.col-md-3 -->
 				<div class="col-md-3 col-sm-6">
-					<img src="assets/images/about-2.png" alt="about" class="about-img">
+					<img src="{% static 'images/about-2.png' %}" alt="about" class="about-img">
 				</div> <!-- /.col-md-3 -->
 
 				<div class="col-md-6 col-sm-12">
-					<p class="about-detail">
-						The Earth was small, light blue, and so touchingly alone, our home that must be defended like a holy relic. The Earth was absolutely round. I believe I never knew what  saw for the first time how beautiful our planet is. 
-					</p> <!-- /.about-detail -->
+					<h2>
+						For so long, nature and human beings work hand in hand with one another
+						<br><br>
+						Our ancestors have proven that as we take care of the nature, it too will take real good care of us. 
+						<br><br>
+						Lo and behold, our ancestors work with all the natural ingredients, balancing all its benefit, creating the secrets to eternal beauty.
+					</h2> <!-- /.about-detail -->
 				</div> <!-- /.col-md-6 -->
 
 			</div> <!-- /.row -->
@@ -189,32 +194,37 @@
 
 
 <!-- Our Team -->
-	<section class="team">
-		<div class="container section-wrapper">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="fun-box">
+	<!-- <section class="team" id="pic1">
+				<div class="col-md-6 col-sm-12" id="fact">
+				<img src="{% static 'images/content1.png' %}" alt="about" >
+				<h3 class="section-item-title">
+						Women Use Personal Care Product Containing 168 Different Toxic Chemicals per day.</h3>
+				</div>
+				<div class="col-md-6 col-sm-12">
+				</div> 
+	</section>  --><!-- /.team -->
+
+	<!-- Our Team -->
+	<!-- <section class="team" id="pic2">
+				<div class="col-md-6" id="fact">
+								<img src="{% static 'images/content1.png' %}" alt="about" >
+					<h3 class="section-item-title">
+						Women Use Personal Care Product Containing 168 Different Toxic Chemicals per day.</h3>
+				</div>
+				<div class="col-md-6 col-sm-6">
+				</div> 
+	</section>  --><!-- /.team -->
+
+	<!-- Our Team -->
+<!-- 	<section class="team" id="pic3">
+				<div class="col-md-6" id="fact">
+					<img src="{% static 'images/content1.png' %}" alt="about" >
 					<h3 class="section-item-title">
 						Women Use Personal Care Product Containing 168 Different Toxic Chemicals per day.</h3>
 					</div>
+				<div class="col-md-6 col-sm-6">
 				</div>
-				<!-- <div class="col-sm-4">
-					<div class="fun-box">
-					<h3 class="section-item-title">
-						26 Seconds Is All It Takes For the Chemicals In Your Personal Care Products to Enter Your Blood Streams.
-					</h3>
-				</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="fun-box">
-					<h3 class="section-item-title">
-						20% Cancer Increase Because of Chemical Materials On Personal Care Products.
-					</h3>
-				</div>
-				</div>	 -->
-			</div> <!-- /.row -->
-			 <!-- /.row -->
-	</section> <!-- /.team -->
+	</section>  --><!-- /.team -->
 
 
 <!-- Note -->
@@ -259,7 +269,7 @@
 
 
 <!-- Our productss -->
-	<section class="products" id="faq">
+	<section class="section-wrapper" id="faq">
 		<div class="container">
 			<div class="_section-wrapper">
 				<h2 class="section-title black">
@@ -307,14 +317,14 @@
 	</section> <!-- /.testimonial -->
 
 <!-- contact -->
-<section class="note grad" id="contact">
+<section class="section-wrapper note grad" id="contact">
 <div class="container">
 			<h1>Reach Us</h1>
 			<div class="row align-items-center" style="align-items: center;">
 	            <div class="col-md-3 contact-item col-sm-6 col-xs-12">
 	                <i class="ion-location"></i>
 	                <h3>Address</h3>
-	                <p class="order">
+	                <p class="contact-item">
 	                    alamat<br>
 	                    Indonesia
 	                </p>
@@ -322,7 +332,7 @@
 	            <div class="col-md-3 order-item col-sm-6 col-xs-12">
 	                <i class="ion-ios-telephone"></i>
 	                <h3>Chat</h3>
-	                <p class="order">
+	                <p class="contact-item">
 	                    Line:  <br>
 	                    WA: 
 	                </p>
@@ -330,16 +340,16 @@
 	            <div class="col-md-3 order-item col-sm-6 col-xs-12">
 	                <i class="ion-printer"></i>
 	                <h3>Social Media</h3>
-	                <p class="order">
+	                <p class="contact-item">
 	                    Instagram: @IHAMask<br>
-	                    Facebook:
+	                    Facebook: IHA MAsk
 	                </p>
 	            </div>
 	            <div class="col-md-3 order-item col-sm-6 col-xs-12">
 	                <i class="ion-ios-email"></i>
 	                <h3>Email Address</h3>
-	                <p class="order">
-	                    <a href="mailto:info@ihamask.com">info@ihamask.com</a> <br>
+	                <p class="contact-item">
+	                    <a href="mailto:info@ihamask.com">admin@ihamask.com</a> <br>
 	                    <a href="#">www.ihamask.com</a>
 	                </p>
 	            </div>
@@ -352,56 +362,41 @@
 	</section>
 <!-- order-->
 	<section class="order section-wrapper" id="order">
+		<h1 style=" text-align: center;">Get Yours Now!</h1>
 		<div class="orderForm">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <h1>Order</h1>
+      <div class="container" style="padding-right: 5%">
             <form id="form" method="POST" action="{% url 'IHAM_app:add_data' %}">
               {% csrf_token %}
-              <div class="col-md-6" style="padding-left: 0;">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                <p><strong>Personal</strong> Information</p>
                 <div class="form-group">
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="InputName" placeholder="Your name" required pattern="[A-Za-z ]+" title="Name must be alphabet" name="name">
-                  </div>
+                    <input class="form-control" type="text" id="InputName" placeholder="Your name" required pattern="[A-Za-z ]+" title="Name must be alphabet" name="name">
                 </div>
-                <div class="form-group">
-                  <div class="input-group">
+                 <div class="form-group">
                     <input type="email" class="form-control" id="InputEmail" placeholder="Enter email" required="required" name="email" onkeyup="email_checkPromo()">
-                  </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter phone number" required pattern="[0-9]{10,12}" id="phone-number" title="Input must be 10-12 'number'" name="phone">
-                  </div>
+                                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Enter phone number" required pattern="[0-9]{10,12}" id="phone-number" title="Input must be 10-12 'number'" name="phone">
                 </div>
-              </div>
-              <br>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-check">
+                </div>
+                <div class="form-group col-md-6">
                     <p><Strong>Tea Tree Organic</Strong> Painless Peel Off Mask <span class="badge badge-secondary">IDR 89000</span></p>
                     <input type="number" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productA" pattern="[0-9]+" name="productQuantityA">
-                  </div>
+                    <p>Total Product Price: Rp <span id="harga-barang">0</span></p>
                 </div>
-                <div class="col-md-3" style="display: none">
+         <!--        <div class="col-md-3" style="display: none">
                   <div class="form-check">
                      <label class="form-check-label">
                        <input class="form-check-input" type="checkbox" id="checkboxB">Product B (Rp 7000)&nbsp;
                      </label>
                      <input type="text" class="form-control w-100" placeholder="Enter quantity(Number)" id="quantity-productB" style="display: none" pattern="[0-9]+" name="productQuantityB">
                    </div>
-                </div>
+                </div> -->
               </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <p>Total Product Price: Rp <span id="harga-barang">0</span></p>
-                </div>
-              </div>
-              <br>
-              <label class="form-control-label">Order Address:</label>
-              <div class="row">
-                <div class="col-md-6">
+              <div class="form-row">
+                <div class="form-group col-md-12">
+              	<p>Order <Strong>Address:</Strong></p>
                   <div class="form-group">
                     <input type="text" class="form-control w-100" required="required" name="street" onkeyup="updateAddress()" id="street" placeholder="Enter your address">
                   </div>
@@ -413,19 +408,21 @@
                   <div class="form-group">
                     <input type="text" class="form-control w-100" required pattern="[0-9]{5}" name="postal" onkeyup="updateAddress()" id="postal" placeholder="Enter your postal code" title="Postal code consist of 5 number">
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
                   <p>Ship To <span id="order-address"></span></p>
                   <p>Shipping Price: Rp <span id="ongkos-kirim">0</span></p>
+                </div>
+              </div>         
+              <div class="row">
+                <div class="col-md-12">
+                  
                   <div class="form-group">
                     <div class="row">
                       <div class="col-md-6">
+                      	 <div class="form-group col-md-6">
+                      	 <p>Got <Strong>Promotion Code?</Strong></p>
                         <input type="text" class="form-control w-100" name="promotion-code" id="promotion-code" placeholder="Input if you have promotion code" onkeyup="check_promo()">
-                      </div>
-                      <div class="col-md-6">
                         <span id="promo-icon"></span>
+                      </div>
                       </div>
                     </div>
                   </div>
@@ -433,14 +430,62 @@
                 </div>
               </div>
               <br>
-              <button type="submit" class="btn d-flex" id='submit-button'>Submit</button>
+              <button type="button" class="btn d-flex" id='submit-button'>Order</button>
+              <button type="submit" id="submitHidden" style="display: none;"></button>
+              <button type="button" id="modalHidden" data-toggle="modal" data-target="#exampleModal" style="display: none;"></button>
+              <!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Order Data Confirmation</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body" id="dataConfirm">
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        <button type="submit" class="btn btn-primary">Submit Order</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
             </form>
           </div>
-        </div>
       </div>
     </div>
 	</section> <!-- /.order -->
+<!-- Modal -->
+  <div class="modal fade" id="success" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h1>Success!</h1>
+          <p>Check Your Email for Further Information</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="welcome" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h1>5% Discount!</h1>
+          <p>Use IHAMASKWEB as promo code</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- Footer -->
 	<footer>
@@ -520,7 +565,7 @@
 		$(document).ready(function(){
 		$.ajax({
         method: "GET",
-        url: "https://www.instagram.com/rafidamar98/?__a=1",
+        url: "https://www.instagram.com/ihamask/?__a=1",
         success : function(data) {
         	for (var i = 0; i < data.user.media.nodes.length; i++) {
         	 	var content = $('<img src="'+data.user.media.nodes[i].display_src+'"class="add-item"  >')
@@ -534,7 +579,7 @@
 		$(document).ready(function(){
 		$.ajax({
         method: "GET",
-        url: "https://www.instagram.com/rafidamar98/?__a=1",
+        url: "https://www.instagram.com/ihamask/?__a=1",
         success : function(data) {
         	for (var i = 0; i < data.user.media.nodes.length; i++) {
         	 	var content = $('<img src="'+data.user.media.nodes[i].display_src+'"class="add-item"  >')

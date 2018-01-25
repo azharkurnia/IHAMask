@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+from django.conf import settings
+from django.core.mail import send_mail
 from .models import PromoCode
 from IHAM_app.models import OrderList, FAQ, upcomingEvents
 from django.http import HttpResponseRedirect
@@ -91,6 +93,9 @@ def paidSlide(request, paid_id):
 	else:
 		o.paidFlage = True
 		print("true")
+		#JALANIN SEND EMAIL DISINI
+        # email = EmailMessage('title', 'body', to=[email])
+        # email.send()
 	o.save()
 	print("saved " + paid_id)
 	return render(request, 'logged_in.html', response)
@@ -105,6 +110,9 @@ def deliveredSlide(request, delivered_id):
 	else:
 		o.deliveredFlage = True
 		print("true")
+		#JALANIN SEND EMAIL DISINI
+        # email = EmailMessage('title', 'body', to=[email])
+        # email.send()
 	o.save()
 	print("saved " + delivered_id)
 	return render(request, 'logged_in.html', response)

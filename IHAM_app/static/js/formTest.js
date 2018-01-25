@@ -12,32 +12,32 @@ $(document).ready(function(){
   // Memastikan value kuantitas nol di awal
   var shipping_cost;
   $("#quantity-productA").val("");
-  $("#quantity-productB").val("");
+  // $("#quantity-productB").val("");
 
-  $("#checkboxA").change(function(){
-    $("#quantity-productA").toggle();   // Tampilkan input quantity ketika checkbox dipilih
-    var display = $("#quantity-productA").attr("style");
-    if (display.includes("none")) { //Kalo input field quantity di ilangin, value nya di reset juga
-      $("#quantity-productA").val("");
-    }
-    updatePrice();
-  });
-  $("#checkboxB").change(function(){
-    $("#quantity-productB").toggle();
-    var display = $("#quantity-productB").attr("style");
-    if (display.includes("none")) {
-      $("#quantity-productB").val("");
-    }
-    updatePrice();
-  });
+  // $("#checkboxA").change(function(){
+  //   $("#quantity-productA").toggle();   // Tampilkan input quantity ketika checkbox dipilih
+  //   var display = $("#quantity-productA").attr("style");
+  //   if (display.includes("none")) { //Kalo input field quantity di ilangin, value nya di reset juga
+  //     $("#quantity-productA").val("");
+  //   }
+  //   updatePrice();
+  // });
+  // $("#checkboxB").change(function(){
+  //   $("#quantity-productB").toggle();
+  //   var display = $("#quantity-productB").attr("style");
+  //   if (display.includes("none")) {
+  //     $("#quantity-productB").val("");
+  //   }
+  //   updatePrice();
+  // });
 
   // Setiap update kuantitas produk, update harga juga
   $("#quantity-productA").bind('keyup mouseup', function(){
     updatePrice();
   });
-  $("#quantity-productB").bind('keyup mouseup', function(){
-    updatePrice();
-  });
+  // $("#quantity-productB").bind('keyup mouseup', function(){
+  //   updatePrice();
+  // });
 
   
 
@@ -52,7 +52,7 @@ $(document).ready(function(){
       var email = $("#InputEmail").val().toString();
       var nomor_hp = $("#phone-number").val().toString();
       var productA = $("#quantity-productA").val().toString();
-      var productB = $("#quantity-productB").val().toString();
+      var productB = "0";
       var alamat = document.getElementById("order-address").innerHTML.toString();
       var kodepos = $("#postal").val().toString();
       var kota = kotaUntukDataBase.toString();
@@ -79,8 +79,8 @@ $(document).ready(function(){
           totalPrice : total_harga
         },
         success: function(data){
-          alert(data);
-          window.location.reload();
+          $('#exampleModal').modal('hide');
+          $('#success').modal('show');
         },
         error: function(){
           alert("Failed");
@@ -109,6 +109,26 @@ $(document).ready(function(){
               "data" : listCity
              });
         }
+    });
+
+   $("#submit-button").unbind('click').bind('click', function (e){
+      if (document.getElementById("form").checkValidity()) {
+      $('#dataConfirm').html ('<p>Name :+'+ $("#InputName").val().toString()+'</p><br><p>Email :+'+ $("#InputEmail").val().toString()+'</p><br><p>Phone Number :+'+ $("#phone-number").val().toString()+'</p><br><p>Order qty :+'+ $("#quantity-productA").val().toString()+'</p><br><p>Deliver To :'+ document.getElementById("order-address").innerHTML.toString()+'</p><br><p>Total Price : IDR+'+ document.getElementById("total-harga").innerHTML.toString()+'</p>');
+      var nama = $("#InputName").val().toString();
+      var email = $("#InputEmail").val().toString();
+      var nomor_hp = $("#phone-number").val().toString();
+      var productA = $("#quantity-productA").val().toString();
+      var productB = "0";
+      var alamat = document.getElementById("order-address").innerHTML.toString();
+      var kodepos = $("#postal").val().toString();
+      var kota = kotaUntukDataBase.toString();
+      var kode_promo = $("#promotion-code").val().toString();
+      var harga_barang = document.getElementById("harga-barang").innerHTML.toString();
+      var harga_kurir = document.getElementById("ongkos-kirim").innerHTML.toString();
+      var total_harga = document.getElementById("total-harga").innerHTML.toString(); 
+        document.getElementById("modalHidden").click(); 
+      }
+      else { document.getElementById("submitHidden").click(); }
     });
 
     $(".my-select-city").on('change', function (e){
@@ -152,7 +172,8 @@ $(document).ready(function(){
 
 
     // Menampilkan halaman HTML [HARUS SELALU DIAKHIR DOCUMENT READY]
-    $("body").css("display", "inherit");
+    $('#welcome').modal('show');
+
 
 
 });
@@ -160,26 +181,27 @@ $(document).ready(function(){
 // Fungsi untuk get kuantitas
 function getValueA(){
   var valueProductA = $("#quantity-productA").val();
+  console.log(valueProductA);
   if (valueProductA != 0) {
     return parseInt(valueProductA);
   } else {
     return 0;
   }
 }
-function getValueB(){
-  var valueProductB = $("#quantity-productB").val();
-  if (valueProductB != 0) {
-    return parseInt(valueProductB);
-  } else {
-    return 0;
-  }
-}
+// function getValueB(){
+//   var valueProductB = $("#quantity-productB").val();
+//   if (valueProductB != 0) {
+//     return parseInt(valueProductB);
+//   } else {
+//     return 0;
+//   }
+// }
 
 // Fungsi untuk get total harga parang
 function getHargaBarang(){
   var hargaProductA = 89000;
   var hargaProductB = 7000;
-  return ((getValueA() * hargaProductA) + (getValueB() * hargaProductB));
+  return ((getValueA() * hargaProductA));
 }
 
 function getShippingCost(harga){
@@ -196,6 +218,7 @@ function hi(province){
     "data" : province
   });
 }
+
 function updatePrice(){
   shipping_cost = $("#ongkos-kirim").text();
   product_price = getHargaBarang();
@@ -206,7 +229,7 @@ function updatePrice(){
   promo_amount = 0;
   if (promo != "") {
     console.log("masuk sini(1)");
-    if (promo.length > 30) {
+    if (promo.includes("You got discount")) {
       console.log("masuk sini(2)");
       promo_amount = $("#promo-amount").text();
       console.log(promo_amount);

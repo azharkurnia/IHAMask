@@ -26,12 +26,14 @@ SECRET_KEY = 'tg2br0gi(3zknt12o^s&cok$d)rzwz%^yi^3(d55g3vey5lp5^'
 DEBUG = True
 
 #####################################################
-#implementasiin lagi buat konfigurasi send email co #
-EMAIL_USE_TLS = True                                #
-EMAIL_HOST = 'smtp.gmail.com'                       #
-EMAIL_HOST_USER = 'test@gmail.com'                  #
-EMAIL_HOST_PASSWORD = 'test'                        #
-EMAIL_PORT = 587                                    #
+#implementasiin lagi buat konfigurasi send email co
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+ACCOUNT_EMAIL_VERIFICATION = "none"
+EMAIL_HOST = "mail.ihamask.com"
+EMAIL_HOST_USER = "admin@ihamask.com"
+EMAIL_HOST_PASSWORD = "admin"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True                             #
 #####################################################
 ALLOWED_HOSTS = ['*']
 

@@ -7,8 +7,8 @@ from IHAM_loginAdmin.models import PromoCode
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 import ast
-from django.core.mail import EmailMessage
-
+from django.conf import settings
+from django.core.mail import send_mail
 
 # Create your views here.
 response = {}
@@ -72,6 +72,7 @@ def add_order_data_to_models(request):
         #JALANIN SEND EMAIL DISINI
         # email = EmailMessage('title', 'body', to=[email])
         # email.send()
+        send_mail("foo", "bar", settings.EMAIL_HOST_USER, [customerEmail])
         return HttpResponse("Complete")
 
 #export data orderan to json

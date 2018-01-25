@@ -163,6 +163,9 @@ body
 	letter-spacing: 3px;
 	color:#000;
 	text-decoration: none;
+	padding: 1%;
+	margin-top: 5%;
+	border: 2px solid #4d464d;
 }
 
 .header-subtitle:hover{
@@ -523,8 +526,40 @@ a .instagram:hover{
 
 .orderForm {
 	background-color: #e8e8e8;
-	margin: 5%;
+	margin: 5% 5% 5% 5%;
+	padding: 5% 5% 5% 5%;
 	-webkit-box-shadow: 0px 4px 77px -10px rgba(0,0,0,0.43);
 	-moz-box-shadow: 0px 4px 77px -10px rgba(0,0,0,0.43);
 	box-shadow: 0px 4px 77px -10px rgba(0,0,0,0.43);
+}
+
+#pic1 {
+	display: flex;
+	background: url('../images/bg1.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-attachment: fixed;
+	}
+
+#pic2 {
+	display: flex;
+	background: url('../images/bg2.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-attachment: fixed;
+	}
+
+#pic3 {
+	display: flex;
+	background: url('../images/bg3.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-attachment: fixed;
+	}
+#fact {
+	padding: 5%;
+	background-color: white;
 }
