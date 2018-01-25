@@ -8,8 +8,8 @@
     width: 60px;
     height: 80px;
     border-radius: 30px;
-    border: 2px solid #b1b1b1;
-    color: #b1b1b1;
+    border: 2px solid #313131;
+    color: #313131;
     font-size: 40px;
     display: inline-block;
     margin-right: 20px;
@@ -25,12 +25,12 @@
     color: #fff;
 }
 .contact h3{
-	padding-bottom: 20px;
-	font-size: 15px;
+    padding-bottom: 20px;
+    font-size: 20px;
 }
 .contact p{
-	font-size: 13px;
-	color: #969595;
+    font-size: 15px;
+    color: #313131;
 }
 
 .form{
@@ -62,10 +62,10 @@
     color: #4a148c;
 }
 input[type="username"], input[type="email"], input[type="text"], .message{
-	border-color: transparent;
-	background: #fff;
-	font-size: 13px;
-	color: #969595;
+    border-color: transparent;
+    background: #fff;
+    font-size: 13px;
+    color: #969595;
 }
 input[type="username"]:focus, input[type="email"]:focus, input[type="text"]:focus, .message:focus{
     border-color: #4a148c;
