@@ -365,7 +365,7 @@
 		<h1 style=" text-align: center;">Get Yours Now!</h1>
 		<div class="orderForm">
       <div class="container" style="padding-right: 5%">
-            <form id="form" method="POST" action="{% url 'IHAM_app:add_data' %}">
+            <form id="form" name="form" method="POST" action="{% url 'IHAM_app:add_data' %}">
               {% csrf_token %}
               <div class="form-row">
                 <div class="form-group col-md-6">
@@ -432,31 +432,29 @@
               <br>
               <button type="button" class="btn d-flex" id='submit-button'>Order</button>
               <button type="submit" id="submitHidden" style="display: none;"></button>
-              <button type="button" id="modalHidden" data-toggle="modal" data-target="#exampleModal" style="display: none;"></button>
-              <!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
 					        <h5 class="modal-title" id="exampleModalLabel">Order Data Confirmation</h5>
-					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					          <span aria-hidden="true">&times;</span>
-					        </button>
 					      </div>
 					      <div class="modal-body" id="dataConfirm">
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					        <button type="submit" class="btn btn-primary">Submit Order</button>
+					        <button type="submit" class="btn btn-primary" id="submitform">Submit Order</button>
 					      </div>
 					    </div>
 					  </div>
 					</div>
+              <!-- Modal -->
             </form>
+  
           </div>
       </div>
     </div>
 	</section> <!-- /.order -->
+	 <button type="button" id="modalHidden" data-toggle="modal" data-target="#exampleModal" style="display: none;"></button>
 <!-- Modal -->
   <div class="modal fade" id="success" role="dialog">
     <div class="modal-dialog modal-sm">
@@ -466,7 +464,7 @@
           <p>Check Your Email for Further Information</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
         </div>
       </div>
     </div>
@@ -481,7 +479,7 @@
           <p>Use IHAMASKWEB as promo code</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        	<button type="button" class="btn btn-default" data-dismiss="modal">Okay</button>
         </div>
       </div>
     </div>
@@ -532,7 +530,6 @@
 	<script src="{% static 'js/script.js' %}"></script>
 	<script src="{% static 'js/formTest.js' %}"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="{% static 'js/formTest.js' %}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
 
 	<script type="text/javascript">
