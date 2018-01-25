@@ -93,9 +93,7 @@ def paidSlide(request, paid_id):
 	else:
 		o.paidFlage = True
 		print("true")
-		#JALANIN SEND EMAIL DISINI
-        # email = EmailMessage('title', 'body', to=[email])
-        # email.send()
+	send_mail("foo", "bar", settings.EMAIL_HOST_USER, [customerEmail])
 	o.save()
 	print("saved " + paid_id)
 	return render(request, 'logged_in.html', response)
@@ -110,9 +108,7 @@ def deliveredSlide(request, delivered_id):
 	else:
 		o.deliveredFlage = True
 		print("true")
-		#JALANIN SEND EMAIL DISINI
-        # email = EmailMessage('title', 'body', to=[email])
-        # email.send()
+		send_mail("foo", "bar", settings.EMAIL_HOST_USER, [customerEmail])
 	o.save()
 	print("saved " + delivered_id)
 	return render(request, 'logged_in.html', response)
