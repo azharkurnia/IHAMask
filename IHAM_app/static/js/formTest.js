@@ -112,8 +112,9 @@ $(document).ready(function(){
     });
 
    $("#submit-button").unbind('click').bind('click', function (e){
+      e.preventDefault();
       if (document.getElementById("form").checkValidity()) {
-      $('#dataConfirm').html ('<p>Name :+'+ $("#InputName").val().toString()+'</p><br><p>Email :+'+ $("#InputEmail").val().toString()+'</p><br><p>Phone Number :+'+ $("#phone-number").val().toString()+'</p><br><p>Order qty :+'+ $("#quantity-productA").val().toString()+'</p><br><p>Deliver To :'+ document.getElementById("order-address").innerHTML.toString()+'</p><br><p>Total Price : IDR+'+ document.getElementById("total-harga").innerHTML.toString()+'</p>');
+      $('#dataConfirm').html ('<p>Name : '+ $("#InputName").val().toString()+'</p><br><p>Email : '+ $("#InputEmail").val().toString()+'</p><br><p>Phone Number : '+ $("#phone-number").val().toString()+'</p><br><p>Order qty : '+ $("#quantity-productA").val().toString()+'</p><br><p>Deliver To :'+ document.getElementById("order-address").innerHTML.toString()+'</p><br><p>Total Price : IDR '+ document.getElementById("total-harga").innerHTML.toString()+'</p>');
       var nama = $("#InputName").val().toString();
       var email = $("#InputEmail").val().toString();
       var nomor_hp = $("#phone-number").val().toString();
@@ -126,10 +127,11 @@ $(document).ready(function(){
       var harga_barang = document.getElementById("harga-barang").innerHTML.toString();
       var harga_kurir = document.getElementById("ongkos-kirim").innerHTML.toString();
       var total_harga = document.getElementById("total-harga").innerHTML.toString(); 
-        document.getElementById("modalHidden").click(); 
+      document.getElementById("modalHidden").click(); 
       }
-      else { document.getElementById("submitHidden").click(); }
+      else { document.getElementById("submitForm").click(); }
     });
+
 
     $(".my-select-city").on('change', function (e){
       var index;
