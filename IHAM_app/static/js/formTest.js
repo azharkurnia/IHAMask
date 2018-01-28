@@ -129,7 +129,7 @@ $(document).ready(function(){
       var total_harga = document.getElementById("total-harga").innerHTML.toString(); 
       document.getElementById("modalHidden").click(); 
       }
-      else { document.getElementById("submitForm").click(); }
+      else { document.getElementById("submitform").click(); }
     });
 
 
