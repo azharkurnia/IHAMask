@@ -58,7 +58,13 @@ body
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: cover;
+	-o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
 	background-attachment: fixed;
+	-o-background-attachment: fixed;
+    -moz-background-attachment: fixed;
+    -webkit-background-attachment: fixed;
 	height: 100vh;
 	color: #000;
 	text-transform: uppercase;
