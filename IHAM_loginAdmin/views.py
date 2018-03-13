@@ -149,41 +149,41 @@ def deliveredSlide(request, delivered_id):
 		o.deliveredFlage = True
 		print("true")
 		email_content='''<HTML>
-		<HEAD>
-			<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
-			<TITLE></TITLE>
-			<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
-			<META NAME="CREATED" CONTENT="20180313;10500000000000">
-			<META NAME="CHANGEDBY" CONTENT="Favian Kharisma Hazman">
-			<META NAME="CHANGED" CONTENT="20180313;13300000000000">
-			<META NAME="AppVersion" CONTENT="16.0000">
-			<META NAME="DocSecurity" CONTENT="0">
-			<META NAME="HyperlinksChanged" CONTENT="false">
-			<META NAME="LinksUpToDate" CONTENT="false">
-			<META NAME="ScaleCrop" CONTENT="false">
-			<META NAME="ShareDoc" CONTENT="false">
-			<STYLE TYPE="text/css">
-			<!--
-				@page { size: 8.5in 11in; margin: 1in }
-				P { margin-bottom: 0.08in; direction: ltr; widows: 2; orphans: 2 }
-			-->
-			</STYLE>
-		</HEAD>
-		<BODY LANG="en-US" DIR="LTR">
-		<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">Halo <I>Dear</I>,</P>
-		<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">	Akhirnya saat yang
-		ditunggu-tunggu datang juga nih! Kami telah mengirimkan <B>IHA Mask</B>
-		ke seluruh penjuru Indonesia, termasuk kamu. Jangan lupa kabari kami
-		apabila barang telah diterima. Oh! Kami juga akan merasa sangat
-		senang dan terhormat apabila bisa mendapat<I> review</I> mengenai <B>IHA
-		Mask</B> dari kamu, ditunggu ya! Selamat memanjakan kulit cantikmu
-		dengan <B>IHA Mask</B> ☺</P>
-		<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in"><A NAME="_GoBack"></A><BR>
-		</P>
-		<P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Nature to get better,</I></P>
-		<P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Have a nice day!</I></P>
-		</BODY>
-		</HTML>'''
+						<HEAD>
+							<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+							<TITLE></TITLE>
+							<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+							<META NAME="CREATED" CONTENT="20180313;10500000000000">
+							<META NAME="CHANGEDBY" CONTENT="Favian Kharisma Hazman">
+							<META NAME="CHANGED" CONTENT="20180313;13300000000000">
+							<META NAME="AppVersion" CONTENT="16.0000">
+							<META NAME="DocSecurity" CONTENT="0">
+							<META NAME="HyperlinksChanged" CONTENT="false">
+							<META NAME="LinksUpToDate" CONTENT="false">
+							<META NAME="ScaleCrop" CONTENT="false">
+							<META NAME="ShareDoc" CONTENT="false">
+							<STYLE TYPE="text/css">
+							<!--
+								@page { size: 8.5in 11in; margin: 1in }
+								P { margin-bottom: 0.08in; direction: ltr; widows: 2; orphans: 2 }
+							-->
+							</STYLE>
+						</HEAD>
+						<BODY LANG="en-US" DIR="LTR">
+						<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">Halo <I>Dear</I>,</P>
+						<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">	Akhirnya saat yang
+						ditunggu-tunggu datang juga nih! Kami telah mengirimkan <B>IHA Mask</B>
+						ke seluruh penjuru Indonesia, termasuk kamu. Jangan lupa kabari kami
+						apabila barang telah diterima. Oh! Kami juga akan merasa sangat
+						senang dan terhormat apabila bisa mendapat<I> review</I> mengenai <B>IHA
+						Mask</B> dari kamu, ditunggu ya! Selamat memanjakan kulit cantikmu
+						dengan <B>IHA Mask</B> ☺</P>
+						<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in"><A NAME="_GoBack"></A><BR>
+						</P>
+						<P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Nature to get better,</I></P>
+						<P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Have a nice day!</I></P>
+						</BODY>
+						</HTML>'''
         msg = EmailMessage("IHAMASK Anda Telah Dikirim!", email_content, settings.EMAIL_HOST_USER, [customerEmail])
         msg.content_subtype = "html"
         msg.send()
