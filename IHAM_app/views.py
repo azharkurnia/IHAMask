@@ -8,7 +8,7 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 import ast
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 
 # Create your views here.
 response = {}
@@ -94,7 +94,7 @@ def add_order_data_to_models(request):
                             </STYLE>
                         </HEAD>
                         <BODY LANG="en-US" DIR="LTR">
-                        <P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">Halo <I>Dear,</I> 
+                        <P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">Halo <I>'''+customerName+'''</I> 
                         </P>
                         <P ALIGN=JUSTIFY STYLE="text-indent: 0.5in; margin-bottom: 0in">Terima
                         kasih karena telah membantu kami melestarikan alam dan mempercayakan

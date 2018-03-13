@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from .models import PromoCode
 from IHAM_app.models import OrderList, FAQ, upcomingEvents
 from django.http import HttpResponseRedirect
