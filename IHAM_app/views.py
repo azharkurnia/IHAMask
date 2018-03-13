@@ -73,57 +73,57 @@ def add_order_data_to_models(request):
         # email = EmailMessage('title', 'body', to=[email])
         # email.send()
         email_content='''<HTML>
-<HEAD>
-    <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
-    <TITLE></TITLE>
-    <META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
-    <META NAME="CREATED" CONTENT="20180313;10500000000000">
-    <META NAME="CHANGEDBY" CONTENT="Favian Kharisma Hazman">
-    <META NAME="CHANGED" CONTENT="20180313;10600000000000">
-    <META NAME="AppVersion" CONTENT="16.0000">
-    <META NAME="DocSecurity" CONTENT="0">
-    <META NAME="HyperlinksChanged" CONTENT="false">
-    <META NAME="LinksUpToDate" CONTENT="false">
-    <META NAME="ScaleCrop" CONTENT="false">
-    <META NAME="ShareDoc" CONTENT="false">
-    <STYLE TYPE="text/css">
-    <!--
-        @page { size: 8.5in 11in; margin: 1in }
-        P { margin-bottom: 0.08in; direction: ltr; widows: 2; orphans: 2 }
-    -->
-    </STYLE>
-</HEAD>
-<BODY LANG="en-US" DIR="LTR">
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">Halo <I>Dear,</I> 
-</P>
-<P ALIGN=JUSTIFY STYLE="text-indent: 0.5in; margin-bottom: 0in">Terima
-kasih karena telah membantu kami melestarikan alam dan mempercayakan
-kulit cantikmu pada <B>IHA Mask</B>! Hanya dengan <B>Rp 89.000,00</B>
-saja kamu bisa mendapatkan kulit sehat dan cerah dalam sekejap.
-Jangan lupa segera lakukan pembayaran ke nomor rekening berikut:</P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in"><BR>
-</P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0in"><B>8700175198</B></P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0in"><B>BCA</B></P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0in"><B>A/N Muhammad Fachry</B></P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in"><BR>
-</P>
-<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">    Jika sudah melakukan
-pembayaran, segera kirimkan bukti transfer-mu dengan membalas e-mail
-ini selambat-lambatnya empat hari setelah pemesanan agar pengiriman
-dapat segera diproses. Sudah tidak sabar ‘kan untuk merawat kulit
-cantikmu? <I>Happy shopping! </I>
-</P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
-</P>
-<P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
-</P>
-<P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Nature to get better,</I></P>
-<P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Have a nice day!</I></P>
-<P ALIGN=RIGHT STYLE="margin-bottom: 0in"><BR>
-</P>
-</BODY>
-</HTML>'''
+        <HEAD>
+            <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+            <TITLE></TITLE>
+            <META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+            <META NAME="CREATED" CONTENT="20180313;10500000000000">
+            <META NAME="CHANGEDBY" CONTENT="Favian Kharisma Hazman">
+            <META NAME="CHANGED" CONTENT="20180313;10600000000000">
+            <META NAME="AppVersion" CONTENT="16.0000">
+            <META NAME="DocSecurity" CONTENT="0">
+            <META NAME="HyperlinksChanged" CONTENT="false">
+            <META NAME="LinksUpToDate" CONTENT="false">
+            <META NAME="ScaleCrop" CONTENT="false">
+            <META NAME="ShareDoc" CONTENT="false">
+            <STYLE TYPE="text/css">
+            <!--
+                @page { size: 8.5in 11in; margin: 1in }
+                P { margin-bottom: 0.08in; direction: ltr; widows: 2; orphans: 2 }
+            -->
+            </STYLE>
+        </HEAD>
+        <BODY LANG="en-US" DIR="LTR">
+        <P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">Halo <I>Dear,</I> 
+        </P>
+        <P ALIGN=JUSTIFY STYLE="text-indent: 0.5in; margin-bottom: 0in">Terima
+        kasih karena telah membantu kami melestarikan alam dan mempercayakan
+        kulit cantikmu pada <B>IHA Mask</B>! Hanya dengan <B>Rp 89.000,00</B>
+        saja kamu bisa mendapatkan kulit sehat dan cerah dalam sekejap.
+        Jangan lupa segera lakukan pembayaran ke nomor rekening berikut:</P>
+        <P ALIGN=JUSTIFY STYLE="margin-bottom: 0in"><BR>
+        </P>
+        <P ALIGN=CENTER STYLE="margin-bottom: 0in"><B>8700175198</B></P>
+        <P ALIGN=CENTER STYLE="margin-bottom: 0in"><B>BCA</B></P>
+        <P ALIGN=CENTER STYLE="margin-bottom: 0in"><B>A/N Muhammad Fachry</B></P>
+        <P ALIGN=JUSTIFY STYLE="margin-bottom: 0in"><BR>
+        </P>
+        <P ALIGN=JUSTIFY STYLE="margin-bottom: 0in">    Jika sudah melakukan
+        pembayaran, segera kirimkan bukti transfer-mu dengan membalas e-mail
+        ini selambat-lambatnya empat hari setelah pemesanan agar pengiriman
+        dapat segera diproses. Sudah tidak sabar ‘kan untuk merawat kulit
+        cantikmu? <I>Happy shopping! </I>
+        </P>
+        <P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+        </P>
+        <P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+        </P>
+        <P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Nature to get better,</I></P>
+        <P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Have a nice day!</I></P>
+        <P ALIGN=RIGHT STYLE="margin-bottom: 0in"><BR>
+        </P>
+        </BODY>
+        </HTML>'''
         msg = EmailMessage("Terima Kasih Telah Memesan IHAMASK!", email_content, settings.EMAIL_HOST_USER, [customerEmail])
         msg.content_subtype = "html"
         msg.send()
