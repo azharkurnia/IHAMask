@@ -118,7 +118,7 @@ cantikmu? <I>Happy shopping! </I>
 </P>
 <P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
 </P>
-<P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Nature to get better, </I></P>
+<P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Nature to get better,</I></P>
 <P ALIGN=RIGHT STYLE="margin-bottom: 0in"><I>Have a nice day!</I></P>
 <P ALIGN=RIGHT STYLE="margin-bottom: 0in"><BR>
 </P>
